@@ -2,13 +2,6 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-<<<<<<< HEAD
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-=======
 import Quiz from './pages/quiz/Quiz.jsx'
 import NotFound from './pages/not-found/NotFount.jsx'
 import Login from './pages/auth/login/Login.jsx'
@@ -25,5 +18,4 @@ createRoot(document.getElementById('root')).render(
     <Route path='/registro' element={<Register/>}/>
   </Routes>
   </BrowserRouter>
->>>>>>> fabianCamayo
 )
