@@ -39,3 +39,19 @@
 // ├── hooks/                     # Custom hooks
 // ├── utils/                     # Funciones utilitarias
 // └── services/                  # Conexión a APIs y Firebase
+
+import { Outlet } from "react-router"
+// import "./DiseasesLayout.css"
+
+const DiseasesLayout = () => {
+  return (
+    <div>
+        <h1>DiseasesLayout</h1>
+        <Outlet/>
+    </div>
+
+
+  )
+}
+
+export default DiseasesLayout

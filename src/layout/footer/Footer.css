@@ -1,0 +1,14 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px; /* Ajusta según tus necesidades */
+    padding: 0,7rem;
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9rem; /* Ajusta el tamaño de la fuente según tus necesidades */
+    color: #636e72; /* Color del texto */
+}

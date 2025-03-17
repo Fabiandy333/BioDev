@@ -2,7 +2,7 @@ import "./Login.css"
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <h1>Inicio de sesión</h1>
   )
 }
 

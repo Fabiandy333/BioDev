@@ -1,0 +1,176 @@
+/* Header.css */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 1rem 2rem; */
+    background-color: #ffffff;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); Lineado en borde*/
+    height: 45px;
+    width: 100%;
+    background-color: inherit; /* Hereda el fondo del elemento padre */
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .logo-container {
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-image {
+    height: 100%;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+  }
+  
+  .logo-image:hover {
+    opacity: 0.8;
+  }
+  
+  .header-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    
+    /* background-color: ; */
+  }
+  
+  .top-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .nav-item {
+    color: #2d3436;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .nav-item:hover {
+    color: rgba(68, 97, 242, 1);
+  }
+  
+  .auth-link.active {
+    color: rgba(68, 97, 242, 1);
+    font-weight: 500;
+  }
+  
+  .auth-section {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .language-selector {
+    color: #636e72;
+    font-size: 0.9rem;
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  .language-selector::after {
+    content: '▼';
+    font-size: 0.6rem;
+    margin-left: 0.3rem;
+  }
+  
+  .auth-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #2d3436;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .auth-link:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .auth-link.register {
+    background-color: rgba(68, 97, 242, 1);
+    color: white;
+  }
+  
+  .auth-link.register:hover {
+    background-color: rgb(32, 61, 205);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .main-header {
+      padding: 1rem;
+      height: auto;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  
+    .logo-image {
+      max-width: 150px;
+    }
+  
+    .header-nav {
+      width: 100%;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+  
+    .top-nav {
+      gap: 1rem;
+    }
+  
+    .auth-section {
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-nav {
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    
+    .top-nav {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    
+    .auth-link {
+      padding: 0.5rem;
+    }
+  }
+  .auth-link.active::after {
+    color: rgba(68, 97, 242, 1);
+    font-weight: 500;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 7px; /* Ajusta según la altura de tu header */
+    width: 50%;
+    height: 3px;
+    background-color: rgba(68, 97, 242, 1);
+    border-radius: 2px;
+    transform: translateX(50%);
+    transition: all 0.3s ease;
+  }
+  
+  /* Ajuste para mobile */
+  @media (max-width: 768px) {
+    .auth-link.active::after {
+      bottom: -5px;
+      height: 2px;
+    }}

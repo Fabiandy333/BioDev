@@ -1,5 +1,9 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  --mandarina: #FF8201;
+
+
+  font-family: "Kufam", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -24,12 +28,83 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  background-color: #F3F3FD;
+  position: relative;
+  overflow: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  width: 120vmax;
+  height: 120vmax;
+  background: radial-gradient(
+    circle at 20% 70%, 
+    rgba(68, 97, 242, 0.4) 0%, 
+    rgba(68, 97, 242, 0) 50%
+  );
+  filter: blur(100px);
+  top: -30%;
+  left: -20%;
+  z-index: -2; /* Capa detrás del contenido */
+}
+/* Efectos de difuminado y formas */
+body::after {
+  content: '';
+  position: fixed;
+  width: 150vmax;
+  height: 150vmax;
+  background: radial-gradient(
+    circle at 20% 70%, 
+    rgba(68, 97, 242, 0.4) 0%, 
+    rgba(68, 97, 242, 0) 50%
+  );
+  filter: blur(100px);
+  top: -30%;
+  left: -20%;
+}
+body::before {
+  content: '';
+  position: fixed;
+  width: 120vmax;
+  height: 120vmax;
+  background: radial-gradient(
+    circle at 8% 30%, 
+    rgba(68, 117, 242, 0.3) 0%, 
+    rgba(68, 117, 242, 0) 50%
+  );
+  filter: blur(120px);
+  right: -25%;
+  bottom: -40%;
+}
+/* Formas adicionales para detalles */
+.background-detail {
+  position: fixed;
+  width: 50vmin;
+  height: 50vmin;
+  background: rgba(111, 108, 144, 0.1);
+  filter: blur(80px);
+  border-radius: 50%;
 }
 
+/* Contenedor principal */
+.app-container {
+  position: relative; /* Establece nuevo contexto de apilamiento */
+  z-index: 1; /* Asegura que el contenido esté sobre el fondo */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.background-detail:nth-child(1) {
+  top: 20%;
+  left: 15%;
+}
+
+.background-detail:nth-child(2) {
+  bottom: 30%;
+  right: 10%;
+}
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

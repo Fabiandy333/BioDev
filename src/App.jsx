@@ -1,11 +1,16 @@
 import './App.css'
+import Login from './pages/auth/login/Login'
 import Foo from './Foo'
 
-function App() {
+import Home from './pages/home/Home'
 
+function App() {
+  
   return(
-    <Foo message='Proyecto BioDev'/>
+     <Home/>
+
   )
 }
+
 
 export default App

@@ -2,7 +2,7 @@ import "./Register.css"
 
 const Register = () => {
   return (
-    <div>Register</div>
+    <h1>Registro</h1>
   )
 }
 

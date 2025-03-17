@@ -21,6 +21,7 @@
 // │   │       ├── Sintomas.jsx
 // │   │       ├── Tratamiento.jsx
 // │   │       ├── Prevencion.jsx
+// |   |       |── SelfCare.jsx     # Autocuidados
 // │   │       └── Estilos/
 // │   │           └── enfermedad.module.css
 // │   ├── Quiz/
