@@ -1,7 +1,22 @@
 import "./Login.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useCallback } from "react"; 
+import useAuthStore from "../../../services/firebase/use-auth-store";
+
+
 
 const Login = () => {
+  const { loginGoogleWithPopUp } = useAuthStore();
+  const navigate = useNavigate();
+
+  const handleLogin = useCallback(()=>{
+    loginGoogleWithPopUp()
+    .then(()=>navigate("/perfil"))
+    .catch(()=> navigate("/"));
+
+  },[loginGoogleWithPopUp,navigate]);
+
+
   return (
     <div className="login-container">
       <div className="hero-content">
@@ -35,6 +50,13 @@ const Login = () => {
         >
           Iniciar sesión
         </NavLink>
+        <h3>O continuar con Google</h3>
+        <button type="button"
+        title="Iniciar sesión con Google"
+        onClick={handleLogin}>
+          Iniciar sesión Google
+        </button>
+
       </div>
     </div>
   );
