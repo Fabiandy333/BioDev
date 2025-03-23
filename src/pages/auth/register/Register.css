@@ -1,0 +1,16 @@
+
+.option {
+    color: black;
+}
+
+/* .desabled-option register {
+    color: #999 !important;
+    font-style: italic;
+    
+} */
+.row-age-geder {
+    display: grid;
+    grid-template-columns: 1fr 2fr; 
+    gap: .5rem;
+    width: 100%;
+  }

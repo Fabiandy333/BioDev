@@ -1,10 +1,19 @@
+import { useCallback } from "react";
 import useAuthStore from "../../services/firebase/use-auth-store"
+import { useNavigate } from "react-router";
 import "./Profile"
 
 const Profile = () => {
     console.log(useAuthStore());
     //desestructurar useAuthStore()
-    const {userLooged} = useAuthStore();
+    const {userLooged, logout} = useAuthStore();
+    const navigate = useNavigate();
+
+    const handleLogout = useCallback(()=>{
+        logout().then(()=> navigate("/"));
+    }, [logout,navigate]);
+
+    
 
   return (
     <>
@@ -15,7 +24,8 @@ const Profile = () => {
               src={userLooged?.photoURL} 
               alt={`Foto de perfil de ${userLooged?.displayName}`}
               className="profile-photo"
-            />
+        />
+        <button onClick={handleLogout} title="Cerrar sesion">Cerrar sesión</button>
     </>
   );
 };
