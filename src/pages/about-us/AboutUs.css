@@ -1,0 +1,80 @@
+.about-us-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .section {
+    display: none;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.5s ease;
+  }
+  
+  .section.active {
+    display: block;
+  }
+  
+  .team-members {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .member {
+    width: 150px;
+    margin: 10px;
+  }
+  
+  .member img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .member p {
+    margin-top: 10px;
+  }
+  
+  /* Estilos para la navegación con puntos */
+  .dots-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dot.active {
+    background-color: #000; /* Punto activo más oscuro */
+  }
+  
+  .dot:hover {
+    background-color: #888; /* Efecto hover para los puntos */
+  }
+  
+  /* Animación de scroll horizontal */
+  @keyframes scrollHint {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-10px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .scroll-hint {
+    animation: scrollHint 1s ease-in-out;
+  }

@@ -6,11 +6,14 @@
     max-height: calc(100vh - 120px);
     /* Ajusta según altura header/footer */
     position: relative;
-    gap: 17rem;
+    /* gap: 17rem; */
 
 }
 
-
+.image-login img {
+  width: auto;
+  height: 100%;
+}
 .welcome-title {
     font-size: 2rem;
   color: #2d3436;
@@ -143,4 +146,11 @@
   color: #666;
   font-size: 0.9rem;
   white-space: nowrap;
+}
+
+.flex-icons {
+  display: flex;
+  flex-direction: row;
+  gap: .5rem;
+  justify-content: center;
 }

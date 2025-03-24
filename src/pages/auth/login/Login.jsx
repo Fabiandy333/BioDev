@@ -4,6 +4,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useCallback } from "react"; 
 import useAuthStore from "../../../services/firebase/use-auth-store";
 import googleLogo from '../../../assets/google-icon.png'; // Ajusta la ruta
+import microsoftLogo from '../../../assets/microsoft-icon.jpg'; // Ajusta la ruta
+import loginImage from '../../../assets/login-image.png'
 
 const Login = () => {
   const { loginGoogleWithPopUp } = useAuthStore();
@@ -22,6 +24,11 @@ const Login = () => {
       <div className="hero-content">
         <h1 className="main-title">Explora los órganos en 3D.</h1>
         <p className="subtitle">Si ya tienes una cuenta ¡empieza ahora!</p>
+      </div>
+
+      <div className="image-login">
+      <img src={loginImage} alt="Imagen Login"
+        />
       </div>
 
       <div className="login-section">
@@ -55,6 +62,7 @@ const Login = () => {
           <div className="divider-line"></div>
         </div>
 
+        <div className="flex-icons">
         <img
           className="button-image-sesion"
           title="Iniciar sesión con Google"
@@ -65,6 +73,18 @@ const Login = () => {
           tabIndex={0}
           onKeyPress={(e) => e.key === "Enter" && handleLogin()} // Funciona con teclado
         />
+        <img
+          className="button-image-sesion"
+          title="Iniciar sesión con Google"
+          src={microsoftLogo}
+          alt="Continuar con Google"
+          // onClick={handleLogin}
+          role="button"
+          tabIndex={0}
+          onKeyPress={(e) => e.key === "Enter" && handleLogin()} // Funciona con teclado
+        />
+        </div>
+        
 
         {/* <button type="button"
         title="Iniciar sesión con Google"
