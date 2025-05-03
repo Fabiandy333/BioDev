@@ -1,95 +1,109 @@
 .home-container {
-    display: flex;
-    flex-direction: row;
-    min-height: calc(100vh - 120px); /* Ajusta según altura header/footer */
-    max-height: calc(100vh - 120px); /* Ajusta según altura header/footer */
-    position: relative;
-    gap: 25rem;
-    
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem;
+  min-height: calc(100vh - 120px);
+}
 
-  .heart-start-image {
-    height: 40%;
-    width: auto;
-    max-width: 200px;
-    object-fit: contain;
-    transition: opacity 0.3s ease;
+.brain-start-image {
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+}
+
+.hero-content {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: #2d3436;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-left: -2rem;
+  font-size: 1rem;
+  color: #636e72;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -3rem; /* Ajusta según el tamaño final del modelo */
+  gap: 1.5rem;
+  margin-right: -15rem;
+}
+
+
+.welcome-title,
+.highlighted-text {
+  margin-top: -2rem;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2d3436;
+  font-weight: 600;
+}
+
+.canvas-brain {
+  width: 420px;
+  margin-top: -5rem;
+  height: 420px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+@media (max-width: 768px) {
+  .canvas-brain {
+    width: 300px;
+    height: 300px;
   }
-  
-  .hero-content {
-    max-width: 600px;
-    z-index: 1;
-    display: flex;
-    flex-direction: column; /* Coloca los elementos uno debajo del otro */
-    justify-content: center; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
-    height: 100vh; /* Ajusta la altura según tus necesidades */
-    text-align: center; /* Centra el texto dentro del contenedor */
-  }
-  
+}
+
+
+@media (max-width: 768px) {
   .main-title {
     font-size: 2.5rem;
-    line-height: 1.1;
-    color: #2d3436;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
   }
-  
+
   .subtitle {
-    font-size: 1rem;
-    color: #636e72;
-    margin-bottom: 3rem;
-    font-weight: 400;
+    font-size: 1.2rem;
   }
-  
-  .welcome-section {
-    margin-top: 4rem;
-  }
-  
+
   .welcome-title {
-    font-size: 2.5rem;
-    color: #2d3436;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+    font-size: 2rem;
   }
-  
+
   .highlighted-text {
-    font-size: 2.5rem;
-    color: #2d3436;
-    font-weight: 600;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 2.2rem;
   }
-  
 
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .main-title {
-      font-size: 2.5rem;
-    }
-    
-    .subtitle {
-      font-size: 1.2rem;
-    }
-    
-    .welcome-title {
-      font-size: 2rem;
-    }
-    
-    .highlighted-text {
-      font-size: 2.2rem;
-    }
-    
 
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 1rem;
   }
-  
-  @media (max-width: 480px) {
-    .home-container {
-      padding: 1rem;
-    }
-    
-    .main-title {
-      font-size: 2rem;
-    }
-    
+
+  .main-title {
+    font-size: 2rem;
   }
+
+}

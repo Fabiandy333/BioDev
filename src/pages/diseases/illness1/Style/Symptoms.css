@@ -1,0 +1,120 @@
+.symptoms-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.symptoms-header h1 {
+  margin-left: -40rem;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #2d3436;
+  margin-bottom: 2rem;
+}
+
+.symptoms-content {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.symptom-left {
+  margin-left: -2rem;
+  flex: 1;
+}
+
+.symptom-left img {
+  width: 100%;
+  max-width: 400px;
+}
+
+.symptom-right {
+  flex: 1;
+}
+
+.symptom-right p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.types-img {
+  width: 100%;
+  max-width: 320px;
+  margin: 1rem 0;
+}
+
+/* .symptom-right ul {
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+} */
+
+.next-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 2rem; 
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.next-button img {
+  width: 35px;
+  height: auto;
+}
+
+
+.return-button-container {
+  position: absolute;
+  top: 80px; 
+  right: -1200px; 
+}
+
+.back-arrow {
+  width: 35px; 
+  height: auto;
+  cursor: pointer;
+}
+
+
+.symptoms-footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+.migraine-model-canvas {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  margin-left: 4rem;
+}
+
+
+.return-button-container {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: -30rem;
+  margin-left: -10rem;
+}
+
+
+.return-button {
+  background-color: #445ef2;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.return-button:hover {
+  background-color: #324dd3;
+}
+

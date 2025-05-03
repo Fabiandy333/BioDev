@@ -1,13 +1,12 @@
-/* Layout.css */
 .layout {
-    min-height: 100vh; /* Mínimo alto de la ventana visible */
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .layout-content {
-    flex: 1; /* Ocupa todo el espacio disponible */
-    max-width: 1200px; /* Ancho máximo del contenido */
-    width: 100%;
-    margin: 0 auto; /* Centrar contenido */
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-content {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}

@@ -2,7 +2,7 @@ import "./NotFound.css"
 
 const NotFount = () => {
   return (
-    <div>NotFount</div>
+    <div>Pagina no encontrada</div>
   )
 }
 

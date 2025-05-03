@@ -1,0 +1,102 @@
+.inicio-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 2rem;
+  background-color: transparent;
+}
+
+.inicio-main {
+  margin-top: -10rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 4rem;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.inicio-texto {
+  text-align: center;
+  max-width: 600px;
+}
+
+.inicio-texto h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 1.5rem;
+}
+
+.btn-aprender {
+  background-color: #3f5efb;
+  color: #fff;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-aprender:hover {
+  background-color: #324dd3;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #555;
+}
+
+.inicio-imagen img {
+  width: 400px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .inicio-main {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .inicio-imagen img {
+    margin-top: 2rem;
+    width: 80%;
+  }
+
+  .inicio-texto h1 {
+    font-size: 1.8rem;
+  }
+}

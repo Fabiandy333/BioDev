@@ -1,0 +1,31 @@
+.how-to-use {
+    line-height: 1.6;
+    color: #333;
+    margin: 20px;
+  }
+  
+  .how-to-use h1 {
+    margin-top: 5rem;
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+  
+  .how-to-use p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .how-to-use ol {
+    list-style-position: inside;
+  }
+  
+  .how-to-use li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+  }
+  
+  .how-to-use strong {
+    color: #000000;
+  }
+  
