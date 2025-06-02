@@ -5,37 +5,49 @@
 }
 
 .symptoms-header h1 {
-  margin-left: -40rem;
+  margin-left: -10rem;
   font-size: 2.2rem;
   font-weight: 800;
   color: #2d3436;
   margin-bottom: 2rem;
+  margin-right: -7rem;
 }
 
 .symptoms-content {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  justify-content: center; /* CENTRAR el contenido en fila */
+  text-align: center;
 }
 
 .symptom-left {
-  margin-left: -2rem;
+  margin-left: 0;
   flex: 1;
+  display: flex;
+  justify-content: center; /* CENTRAR el canvas dentro de la izquierda */
+  align-items: center;
+  margin-top: 10rem;
+  margin-right: -60rem;
 }
 
-.symptom-left img {
-  width: 100%;
-  max-width: 400px;
-}
+
+
 
 .symptom-right {
   flex: 1;
 }
 
 .symptom-right p {
+  margin: 0; /* eliminar márgenes negativos */
+  padding: 0;
   font-size: 1rem;
   color: #444;
-  margin-bottom: 1rem;
+  text-align: center; 
+  margin-left: -7rem;/* o center si quieres */
 }
 
 .types-img {
@@ -49,15 +61,27 @@
   margin-bottom: 2rem;
 } */
 
+.return-button-container {
+  position: fixed;
+  top: 20px;
+  left: 20px; /* para flecha de "regresar" izquierda */
+  z-index: 1000;
+}
+
 .next-button {
+  position: fixed;
+  top: 20px;
+  right: 20px; /* para flecha de "siguiente" derecha */
+  z-index: 1000;
   background: none;
   border: none;
   cursor: pointer;
-  margin-top: 2rem; 
+  width: auto;
   display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  margin-top: 29.7rem;
+  margin-right: 15rem;
 }
+
 
 .next-button img {
   width: 35px;
@@ -66,9 +90,10 @@
 
 
 .return-button-container {
-  position: absolute;
-  top: 80px; 
-  right: -1200px; 
+  position: fixed;
+  top: 20px;
+  left: 20px; /* para flecha de "regresar" izquierda */
+  z-index: 1000;
 }
 
 .back-arrow {
@@ -85,11 +110,69 @@
   color: #aaa;
 }
 .migraine-model-canvas {
+  margin: 0 auto; /* centra horizontalmente */
   width: 100%;
   max-width: 400px;
   height: 400px;
-  margin-left: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 18rem;
 }
+
+/* Ajuste para los modelos 3D de Esclerosis */
+.esclerosis-model-canvas {
+  margin: 0 auto;          /* Centra el canvas horizontalmente */
+  width: 100%;             /* Usa el 100% del ancho disponible */
+  max-width: 600px;        /* Aumenta el tamaño máximo del modelo */
+  height: 600px;           /* Aumenta la altura del modelo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10rem;         /* Elimina el margen derecho */
+  margin-top: -8rem;
+}
+
+/* Ajuste para el segundo modelo de Esclerosis */
+.esclerosis-model2-canvas {
+  margin: 0 auto;          /* Centra el canvas horizontalmente */
+  width: 100%;             /* Usa el 100% del ancho disponible */
+  max-width: 600px;        /* Aumenta el tamaño máximo del modelo */
+  height: 600px;           /* Aumenta la altura del modelo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0;         /* Elimina el margen derecho */
+}
+
+
+/* Symptoms.css */
+.acv-model-canvas {
+  margin: 0 auto;          /* Centra el canvas horizontalmente */
+  width: 100%;
+  max-width: 400px;        /* Puedes ajustar el tamaño máximo del modelo */
+  height: 400px;           /* Ajusta la altura del canvas */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 18rem;     /* Espacio opcional a la derecha */
+}
+
+/* Ajuste para que los modelos 3D de Alzheimer sean más grandes */
+.alzheimer-model-canvas {
+  margin: 0 auto;          /* Centra el canvas horizontalmente */
+  width: 100%;
+  max-width: 400px;        /* Tamaño máximo del modelo más grande */
+  height: 400px;           /* Mayor altura */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 18rem;     /* Espacio opcional a la derecha */
+}
+
+
+
+
 
 
 .return-button-container {
@@ -98,7 +181,8 @@
   display: flex;
   justify-content: flex-start;
   padding-left: -30rem;
-  margin-left: -10rem;
+  margin-left: 18rem;
+  margin-top: 30.33rem;
 }
 
 

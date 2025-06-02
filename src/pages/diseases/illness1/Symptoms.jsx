@@ -14,7 +14,7 @@ const Symptoms = ({ title, description, imageLeft, imageRight }) => {
 
 
   const goToNext = () => {
-    navigate("/enfermedades/migrana/prevencion");
+    navigate("/enfermedades/migrana/sintomas");
   };
 
 
@@ -55,8 +55,6 @@ const Symptoms = ({ title, description, imageLeft, imageRight }) => {
 
         <div className="symptom-right">
           <p>{description}</p>
-          <img src={imageRight} alt="Tipos o efectos" className="types-img" />
-
 
           <button onClick={goToNext} className="next-button">
             <img src="/next.png" alt="Siguiente" />

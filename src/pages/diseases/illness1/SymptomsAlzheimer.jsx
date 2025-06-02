@@ -1,5 +1,9 @@
+// SymptomsAlzheimer.jsx
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import AlzheimerModel from "../../diseases/models-3d/AlzheimerModel"; // Importamos el modelo
 
 const SymptomsAlzheimer = () => {
   const navigate = useNavigate();
@@ -9,7 +13,7 @@ const SymptomsAlzheimer = () => {
   };
 
   const goToNext = () => {
-    navigate("/enfermedades/alzheimer/prevencion");
+    navigate("/enfermedades/alzheimer/sintomas");
   };
 
   return (
@@ -24,14 +28,22 @@ const SymptomsAlzheimer = () => {
 
       <main className="symptoms-content">
         <div className="symptom-left">
-          <img src="/alzheimer.png" alt="Ilustración Alzheimer" />
+          <div className="alzheimer-model-canvas">
+            <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
+              <ambientLight intensity={2.2} />
+              <directionalLight position={[5, 5, 5]} intensity={2.5} />
+              <directionalLight position={[0, -3, 5]} intensity={1.8} />
+              <directionalLight position={[0, 0, -5]} intensity={1.2} />
+              <OrbitControls enableZoom={false} enablePan={false} />
+              <AlzheimerModel /> {/* Aquí se renderiza el modelo 3D */}
+            </Canvas>
+          </div>
         </div>
 
         <div className="symptom-right">
           <p>
-            El Alzheimer es una enfermedad neurodegenerativa progresiva que afecta la memoria, el pensamiento y el comportamiento. Es la forma más común de demencia y suele comenzar con olvidos leves que empeoran con el tiempo.
+            El Alzheimer es una enfermedad neurodegenerativa progresiva que afecta principalmente la memoria, el pensamiento y el comportamiento. Es la forma más común de demencia y suele empezar con síntomas leves, como olvidos frecuentes y dificultades para recordar información reciente. Con el tiempo, la enfermedad avanza y provoca problemas más graves, como la pérdida de la capacidad para realizar actividades cotidianas, desorientación, cambios de personalidad y dificultades para reconocer a las personas cercanas.
           </p>
-          <img src="/alzheimer2.png" alt="Síntomas Alzheimer" className="types-img" />
 
           <button onClick={goToNext} className="next-button">
             <img src="/next.png" alt="Siguiente" />

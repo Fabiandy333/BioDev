@@ -24,12 +24,10 @@ const SelfCareEsclerosis = ({ title, description, imageLeft, imageRight }) => {
 
       <main className="symptoms-content">
         <div className="symptom-left">
-          <img src={imageLeft} alt="Autocuidado" />
         </div>
 
         <div className="symptom-right">
           <p>{description}</p>
-          <img src={imageRight} alt="Autocuidado" className="types-img" />
           <button onClick={goToNext} className="next-button">
             <img src="/next.png" alt="Siguiente" />
           </button>
