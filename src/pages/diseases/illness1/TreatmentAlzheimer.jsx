@@ -20,12 +20,10 @@ const TreatmentAlzheimer = ({ title, description, imageLeft, imageRight }) => {
 
       <main className="symptoms-content">
         <div className="symptom-left">
-          <img src={imageLeft} alt="Tratamiento Alzheimer" />
         </div>
 
         <div className="symptom-right">
           <p>{description}</p>
-          <img src={imageRight} alt="Tratamiento" className="types-img" />
         </div>
       </main>
     </div>

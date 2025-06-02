@@ -4,106 +4,63 @@
   align-items: center;
   padding: 0 5rem;
   min-height: calc(100vh - 120px);
+  gap: 3rem;
 }
 
-.brain-start-image {
-  width: 60%;
-  height: auto;
-  object-fit: contain;
-}
-
-.hero-content {
-  max-width: 500px;
+.left-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  text-align: left;
+  max-width: 600px;
 }
 
-.main-title {
-  font-size: 2.5rem;
-  line-height: 1.1;
+.main-message {
+  font-size: 3rem;
+  margin-left: -10rem;
+  line-height: 1.2;
   color: #2d3436;
-  margin-bottom: 1.5rem;
   font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.subtitle {
-  margin-left: -2rem;
-  font-size: 1rem;
+.sub-message {
+  font-size: 1.4rem;
   color: #636e72;
-  margin-bottom: 3rem;
   font-weight: 400;
-}
-
-.welcome-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: -3rem; /* Ajusta según el tamaño final del modelo */
-  gap: 1.5rem;
-  margin-right: -15rem;
-}
-
-
-.welcome-title,
-.highlighted-text {
-  margin-top: -2rem;
-  text-align: center;
-  font-size: 2.5rem;
-  color: #2d3436;
-  font-weight: 600;
+  margin-top: 0.5rem;
 }
 
 .canvas-brain {
   width: 420px;
-  margin-top: -5rem;
   height: 420px;
-  background: transparent;
+  margin-top: -2rem;
+  margin-right: -10rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 
-
 @media (max-width: 768px) {
+
   .canvas-brain {
-    width: 300px;
-    height: 300px;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .main-title {
-    font-size: 2.5rem;
+    width: 350px;
+    height: 350px;
   }
 
-  .subtitle {
+  .main-message {
+    font-size: 2.4rem;
+    text-align: center;
+  }
+
+  .sub-message {
     font-size: 1.2rem;
+    text-align: center;
   }
 
-  .welcome-title {
-    font-size: 2rem;
+  .left-content {
+    align-items: center;
+    text-align: center;
   }
-
-  .highlighted-text {
-    font-size: 2.2rem;
-  }
-
-
-}
-
-@media (max-width: 480px) {
-  .home-container {
-    padding: 1rem;
-  }
-
-  .main-title {
-    font-size: 2rem;
-  }
-
 }

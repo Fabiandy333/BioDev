@@ -30,12 +30,10 @@ const SelfCare = ({ title, description, imageLeft, imageRight }) => {
 
       <main className="symptoms-content">
         <div className="symptom-left">
-          <img src={imageLeft} alt="Autocuidado migraña" />
         </div>
 
         <div className="symptom-right">
           <p>{description}</p>
-          <img src={imageRight} alt="Ejemplo autocuidado" className="types-img" />
 
           <button onClick={goToNext} className="next-button">
             <img src="/next.png" alt="Siguiente" />

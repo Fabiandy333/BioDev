@@ -20,12 +20,10 @@ const TreatmentACV = ({ title, description, imageLeft, imageRight }) => {
 
       <main className="symptoms-content">
         <div className="symptom-left">
-          <img src={imageLeft} alt="Tratamiento ACV" />
         </div>
 
         <div className="symptom-right">
           <p>{description}</p>
-          <img src={imageRight} alt="Ejemplo tratamiento" className="types-img" />
         </div>
       </main>
     </div>
