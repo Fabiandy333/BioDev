@@ -1,0 +1,52 @@
+.experience3d-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.experience3d-text {
+  text-align: center;
+  margin-bottom: 1rem;  /* Reducción del margen para un espacio más ajustado */
+}
+
+.experience3d-heading {
+  font-size: 2.5rem;  /* Ajuste del tamaño de la fuente */
+  color: #2d3436;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: -6rem;
+}
+
+.experience3d-canvas {
+  width: 70vw;   /* Ajuste del ancho para el modelo 3D */
+  height: 50vh;  /* Ajuste de la altura para el modelo 3D */
+  margin-bottom: 1rem;
+  margin-top: -5rem;
+}
+
+.experience3d-model {
+  /* Aquí puedes añadir estilos específicos para el modelo 3D, como posicionamiento o rotación */
+  /* Ejemplo: */
+  transition: transform 0.5s ease; /* Transición suave cuando modifiques las propiedades de transformación */
+}
+
+.experience3d-button {
+  margin-top: 2rem;  /* Reducción del margen superior para acercar el botón */
+}
+
+.experience3d-btn {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background-color: #3f5efb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.experience3d-btn:hover {
+  background-color: #324dd3;
+}

@@ -8,6 +8,7 @@ import Register from "../pages/auth/register/Register";
 import Inicio from "../pages/inicio/Inicio";
 import App from "../App";
 import DiseasesRoutes from "./DiseasesRoutes";
+import Experience3d from "../pages/experience-3d/Experience3d";
 
 const AppRouter = () => {
   return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
       <Route path="/registro" element={<Register />} />
       <Route path="/inicio" element={<Inicio />} />
       <Route path="/enfermedades/*" element={<DiseasesRoutes />} />
+      <Route path="/experiencia-3d" element={<Experience3d />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
