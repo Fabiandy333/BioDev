@@ -13,7 +13,7 @@ const Experience3d = () => {
 
       <div className="experience3d-canvas">
         <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
-          <Brain2 scale={1.5} rotate={false} />  {/* Desactivar rotación aquí */}
+          <Brain2 scale={1.5} rotate={false} />
           <ambientLight intensity={2.2} />
           <directionalLight position={[5, 5, 5]} intensity={2.5} />
           <directionalLight position={[0, -3, 5]} intensity={1.8} />
@@ -24,7 +24,7 @@ const Experience3d = () => {
       </div>
 
       <div className="experience3d-button">
-        <button className="experience3d-btn">Comenzar experiencia</button>  {/* Clase para el botón */}
+        <button className="experience3d-btn">Comenzar experiencia</button>
       </div>
     </div>
   );

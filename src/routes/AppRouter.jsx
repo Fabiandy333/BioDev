@@ -8,7 +8,7 @@ import Register from "../pages/auth/register/Register";
 import Inicio from "../pages/inicio/Inicio";
 import App from "../App";
 import DiseasesRoutes from "./DiseasesRoutes";
-import Experience3d from "../pages/experience-3d/Experience3d";
+import Experience3d from "../pages/experience-3d/Experience3d"; //Se agrega
 
 const AppRouter = () => {
   return (
