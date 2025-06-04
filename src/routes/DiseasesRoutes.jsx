@@ -41,9 +41,7 @@ const DiseasesRoutes = () => {
       <Route path="/migrana/sintomas" element={
         <Prevention
           title="Sintomas"
-          description="Prevenir la migraña implica adoptar hábitos saludables y evitar ciertos factores que pueden desencadenarla. 
-          Una de las primeras recomendaciones es identificar qué situaciones, alimentos o estímulos suelen provocar los episodios. Entre los desencadenantes más comunes se encuentran el consumo de chocolate, quesos curados, embutidos, alcohol (especialmente vino tinto), exceso de cafeína, el estrés, los cambios hormonales, la falta o exceso de sueño, los olores fuertes y la exposición a luces intensas o intermitentes. Llevar un diario de migrañas puede ayudarte a detectar patrones y evitarlos.
-          También es importante mantener una rutina estable en tu vida diaria. Dormir y despertar a la misma hora, comer en horarios regulares, evitar saltarse comidas y mantener una buena hidratación son medidas fundamentales."
+          description="Los síntomas de la migraña incluyen dolor de cabeza intenso, generalmente pulsante, que se localiza en un solo lado de la cabeza, aunque puede ser bilateral. A menudo va acompañado de náuseas y vómitos. Las personas con migraña también experimentan una mayor sensibilidad a la luz y al sonido, lo que les obliga a buscar un ambiente oscuro y tranquilo. En algunos casos, antes del dolor, se pueden presentar alteraciones visuales conocidas como auras, como destellos de luz o líneas en zigzag. Otros síntomas comunes son hormigueo o adormecimiento en una parte del cuerpo y mareos o vértigo, que pueden generar sensación de inestabilidad."
         />
       } />
       <Route path="/migrana/autocuidado" element={

@@ -2,10 +2,13 @@ import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { useState } from "react";
 import MigraineModel2 from "../../diseases/models-3d/MigraineModel2";
 
 const Prevention = ({ title, description }) => {
   const navigate = useNavigate();
+
+  const [isRotating, setIsRotating] = useState(true); // Estado para controlar si el modelo está rotando
 
   const handleBackClick = () => {
     navigate("/enfermedades");
@@ -13,6 +16,11 @@ const Prevention = ({ title, description }) => {
 
   const goToNext = () => {
     navigate("/enfermedades/migrana/autocuidado");
+  };
+
+  // Función para cambiar el estado de rotación (pausar o reanudar)
+  const handlePauseClick = () => {
+    setIsRotating(!isRotating);
   };
 
   return (
@@ -39,11 +47,10 @@ const Prevention = ({ title, description }) => {
               <directionalLight position={[0, -3, 5]} intensity={1.8} />
               <directionalLight position={[0, 0, -5]} intensity={1.2} />
               <OrbitControls enableZoom={false} enablePan={false} />
-              <MigraineModel2 />
+              <MigraineModel2 isRotating={isRotating} setIsRotating={setIsRotating} />
             </Canvas>
           </div>
         </div>
-
 
         <div className="symptom-right">
           <p>{description}</p>
@@ -53,6 +60,25 @@ const Prevention = ({ title, description }) => {
           </button>
         </div>
       </main>
+
+      {/* Texto explicativo fijo */}
+      <div className="instruction-text">
+        <p><strong>Instrucciones:</strong></p>
+        <p>
+          <p>Haz clic en el modelo para pausar la rotación.</p>
+          <p>Puedes rotar el modelo mientras este en pausa.</p>
+          <p>Usa las flechas del teclado para rotarlo.</p>
+          <p>Haz clic nuevamente para reanudar el movimiento.</p>
+        </p>
+      </div>
+
+      {/* Botón Pausa o Reanudar 3D */}
+      <button
+        className="pausa-button"
+        onClick={handlePauseClick} // Cambia el estado de rotación al hacer clic
+      >
+        {isRotating ? "Pausa" : "Reanudar"} {/* Cambia el texto del botón según el estado */}
+      </button>
     </div>
   );
 };

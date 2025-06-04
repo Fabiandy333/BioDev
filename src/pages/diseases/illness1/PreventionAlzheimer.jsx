@@ -1,12 +1,14 @@
-// PreventionAlzheimer.jsx
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { useState } from "react";
 import AlzheimerModel2 from "../../diseases/models-3d/AlzheimerModel2"; // Importamos el segundo modelo
 
 const PreventionAlzheimer = ({ title, description, imageLeft, imageRight }) => {
   const navigate = useNavigate();
+
+  const [isRotating, setIsRotating] = useState(true); // Estado para controlar si el modelo está rotando
 
   const handleBackClick = () => {
     navigate("/enfermedades");
@@ -14,6 +16,11 @@ const PreventionAlzheimer = ({ title, description, imageLeft, imageRight }) => {
 
   const goToNext = () => {
     navigate("/enfermedades/alzheimer/autocuidado");
+  };
+
+  // Función para cambiar el estado de rotación (pausar o reanudar)
+  const handlePauseClick = () => {
+    setIsRotating(!isRotating);
   };
 
   return (
@@ -35,7 +42,7 @@ const PreventionAlzheimer = ({ title, description, imageLeft, imageRight }) => {
               <directionalLight position={[0, -3, 5]} intensity={1.8} />
               <directionalLight position={[0, 0, -5]} intensity={1.2} />
               <OrbitControls enableZoom={false} enablePan={false} />
-              <AlzheimerModel2 />
+              <AlzheimerModel2 isRotating={isRotating} setIsRotating={setIsRotating} />
             </Canvas>
           </div>
         </div>
@@ -47,6 +54,25 @@ const PreventionAlzheimer = ({ title, description, imageLeft, imageRight }) => {
           </button>
         </div>
       </main>
+
+      {/* Texto explicativo fijo */}
+      <div className="instruction-text">
+        <p><strong>Instrucciones:</strong></p>
+        <p>
+          <p>Haz clic en el modelo para pausar la rotación.</p>
+          <p>Puedes rotar el modelo mientras este en pausa.</p>
+          <p>Usa las flechas del teclado para rotarlo.</p>
+          <p>Haz clic nuevamente para reanudar el movimiento.</p>
+        </p>
+      </div>
+
+      {/* Botón Pausa o Reanudar 3D */}
+      <button
+        className="pausa-button"
+        onClick={handlePauseClick} // Cambia el estado de rotación al hacer clic
+      >
+        {isRotating ? "Pausa" : "Reanudar"} {/* Cambia el texto del botón según el estado */}
+      </button>
     </div>
   );
 };

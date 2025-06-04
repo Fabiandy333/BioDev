@@ -170,6 +170,50 @@
   margin-right: 18rem;     /* Espacio opcional a la derecha */
 }
 
+.instruction-text {
+  margin-left: -50rem;
+  margin-top: -20rem;
+  font-size: 0.8rem; /* Tamaño más grande para mejorar la legibilidad */
+  color: #444;
+  padding: 1rem; /* Un poco de relleno alrededor del texto */
+  text-align: center;
+}
+
+/* Botón Pausa 3D */
+.pausa-button {
+  position: fixed;
+  top: 50%; /* Centra verticalmente */
+  right: 10px; /* Coloca el botón a la derecha */
+  transform: translateY(-50%); /* Ajusta para que se alinee al centro de la altura */
+  background-color: #445ef2; /* Color de fondo que combina con el resto del diseño */
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease; /* Transición para el hover */
+  margin-right: 24rem;
+  margin-top: 3rem;
+  z-index: 9999; /* Asegura que el botón esté por encima de otros elementos */
+}
+
+/* Efecto 3D al pasar el mouse */
+.pausa-button:hover {
+  transform: translateY(-50%) scale(1.1) translateZ(10px); /* Da un efecto de elevación */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
+}
+
+/* Efecto de presionar el botón */
+.pausa-button:active {
+  transform: translateY(-50%) scale(1) translateZ(5px); /* Reduce la elevación al hacer clic */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más pequeña */
+}
+
+
+
 
 
 
