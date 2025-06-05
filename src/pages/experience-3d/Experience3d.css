@@ -6,13 +6,18 @@
   height: 100vh;
 }
 
+.experience3d-container.full-screen {
+  justify-content: flex-start;
+  /* Alinea todo al inicio para que no haya espacio extra */
+}
+
 .experience3d-text {
   text-align: center;
-  margin-bottom: 1rem;  /* Reducción del margen para un espacio más ajustado */
+  margin-bottom: 1rem;
 }
 
 .experience3d-heading {
-  font-size: 2.5rem;  /* Ajuste del tamaño de la fuente */
+  font-size: 2.5rem;
   color: #2d3436;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -20,20 +25,28 @@
 }
 
 .experience3d-canvas {
-  width: 70vw;   /* Ajuste del ancho para el modelo 3D */
-  height: 50vh;  /* Ajuste de la altura para el modelo 3D */
+  width: 70vw;
+  height: 50vh;
   margin-bottom: 1rem;
   margin-top: -5rem;
+  transition: all 0.5s ease;
+}
+
+.experience3d-canvas.full-screen-canvas {
+  width: 100vw;
+  /* Ahora ocupa el 100% del ancho */
+  height: 100vh;
+  /* Ahora ocupa el 100% del alto */
+  margin: 0;
+  /* Elimina márgenes */
 }
 
 .experience3d-model {
-  /* Aquí puedes añadir estilos específicos para el modelo 3D, como posicionamiento o rotación */
-  /* Ejemplo: */
-  transition: transform 0.5s ease; /* Transición suave cuando modifiques las propiedades de transformación */
+  transition: transform 0.5s ease;
 }
 
 .experience3d-button {
-  margin-top: 2rem;  /* Reducción del margen superior para acercar el botón */
+  margin-top: 2rem;
 }
 
 .experience3d-btn {
@@ -49,4 +62,58 @@
 
 .experience3d-btn:hover {
   background-color: #324dd3;
+}
+
+/* Contenedor del botón de regresar */
+.back-button-container {
+  position: absolute;
+  top: 20px;
+  /* Ajusta la posición desde la parte superior */
+  left: 20px;
+  /* Ajusta la posición desde la izquierda */
+  z-index: 100;
+  /* Asegúrate de que esté por encima del modelo 3D */
+  margin-top: 30rem;
+  margin-left: -20rem;
+}
+
+/* Estilo para la imagen de la flecha */
+.back-button {
+  width: 50px;
+  /* Ajusta el tamaño de la flecha */
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+/* Efecto cuando el usuario pasa el ratón por encima de la flecha */
+.back-button:hover {
+  opacity: 1;
+}
+
+/* Contenedor del botón de siguiente modelo */
+.next-button-container {
+  position: absolute;
+  top: 20px;
+  /* Ajusta la posición desde la parte superior */
+  right: 20px;
+  /* Ajusta la posición desde la derecha */
+  z-index: 100;
+  /* Asegúrate de que esté por encima del modelo 3D */
+}
+
+/* Estilo para la imagen de la flecha "next" */
+.next-button {
+  width: 50px;
+  /* Ajusta el tamaño de la flecha */
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  margin-top: 30rem;
+  margin-right: 2rem;
+}
+
+/* Efecto cuando el usuario pasa el ratón por encima de la flecha */
+.next-button:hover {
+  opacity: 1;
 }
