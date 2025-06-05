@@ -34,9 +34,6 @@
   margin-right: -60rem;
 }
 
-
-
-
 .symptom-right {
   flex: 1;
 }
@@ -46,8 +43,8 @@
   padding: 0;
   font-size: 1rem;
   color: #444;
-  text-align: center; 
-  margin-left: -7rem;/* o center si quieres */
+  text-align: center;
+  margin-left: -7rem; /* o center si quieres */
 }
 
 .types-img {
@@ -60,13 +57,6 @@
   padding-left: 1.5rem;
   margin-bottom: 2rem;
 } */
-
-.return-button-container {
-  position: fixed;
-  top: 20px;
-  left: 20px; /* para flecha de "regresar" izquierda */
-  z-index: 1000;
-}
 
 .next-button {
   position: fixed;
@@ -82,12 +72,10 @@
   margin-right: 15rem;
 }
 
-
 .next-button img {
   width: 35px;
   height: auto;
 }
-
 
 .return-button-container {
   position: fixed;
@@ -97,11 +85,10 @@
 }
 
 .back-arrow {
-  width: 35px; 
+  width: 35px;
   height: auto;
   cursor: pointer;
 }
-
 
 .symptoms-footer {
   text-align: center;
@@ -122,52 +109,49 @@
 
 /* Ajuste para los modelos 3D de Esclerosis */
 .esclerosis-model-canvas {
-  margin: 0 auto;          /* Centra el canvas horizontalmente */
-  width: 100%;             /* Usa el 100% del ancho disponible */
-  max-width: 600px;        /* Aumenta el tamaño máximo del modelo */
-  height: 600px;           /* Aumenta la altura del modelo */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10rem;         /* Elimina el margen derecho */
-  margin-top: -8rem;
+  margin: 0 auto; /* Centra el canvas horizontalmente */
+  width: 100%; /* Usa el 100% del ancho disponible */
+  max-width: 550px; /* Aumenta el tamaño máximo del modelo */
+  height: 545px; /* Aumenta la altura del modelo */
+  align-items: top;
+  margin-right: 5rem; /* Elimina el margen derecho */
+  margin-top: -4.5rem;
 }
 
 /* Ajuste para el segundo modelo de Esclerosis */
 .esclerosis-model2-canvas {
-  margin: 0 auto;          /* Centra el canvas horizontalmente */
-  width: 100%;             /* Usa el 100% del ancho disponible */
-  max-width: 600px;        /* Aumenta el tamaño máximo del modelo */
-  height: 600px;           /* Aumenta la altura del modelo */
+  margin: 0 auto; /* Centra el canvas horizontalmente */
+  width: 100%; /* Usa el 100% del ancho disponible */
+  max-width: 600px; /* Aumenta el tamaño máximo del modelo */
+  height: 500px; /* Aumenta la altura del modelo */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 0;         /* Elimina el margen derecho */
+  margin-right: 0; /* Elimina el margen derecho */
 }
-
 
 /* Symptoms.css */
 .acv-model-canvas {
-  margin: 0 auto;          /* Centra el canvas horizontalmente */
+  margin: 0 auto; /* Centra el canvas horizontalmente */
   width: 100%;
-  max-width: 400px;        /* Puedes ajustar el tamaño máximo del modelo */
-  height: 400px;           /* Ajusta la altura del canvas */
+  max-width: 400px; /* Puedes ajustar el tamaño máximo del modelo */
+  height: 500px; /* Ajusta la altura del canvas */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 18rem;     /* Espacio opcional a la derecha */
+  margin-right: 18rem; /* Espacio opcional a la derecha */
 }
 
 /* Ajuste para que los modelos 3D de Alzheimer sean más grandes */
 .alzheimer-model-canvas {
-  margin: 0 auto;          /* Centra el canvas horizontalmente */
+  margin: 0 auto; /* Centra el canvas horizontalmente */
   width: 100%;
-  max-width: 400px;        /* Tamaño máximo del modelo más grande */
-  height: 400px;           /* Mayor altura */
+  max-width: 400px; /* Tamaño máximo del modelo más grande */
+  height: 400px; /* Mayor altura */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 18rem;     /* Espacio opcional a la derecha */
+  margin-right: 18rem; /* Espacio opcional a la derecha */
 }
 
 .instruction-text {
@@ -184,7 +168,9 @@
   position: fixed;
   top: 50%; /* Centra verticalmente */
   right: 10px; /* Coloca el botón a la derecha */
-  transform: translateY(-50%); /* Ajusta para que se alinee al centro de la altura */
+  transform: translateY(
+    -50%
+  ); /* Ajusta para que se alinee al centro de la altura */
   background-color: #445ef2; /* Color de fondo que combina con el resto del diseño */
   color: white;
   border: none;
@@ -212,13 +198,6 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más pequeña */
 }
 
-
-
-
-
-
-
-
 .return-button-container {
   width: 100%;
   margin-top: 2rem;
@@ -228,7 +207,6 @@
   margin-left: 18rem;
   margin-top: 30.33rem;
 }
-
 
 .return-button {
   background-color: #445ef2;
@@ -245,4 +223,3 @@
 .return-button:hover {
   background-color: #324dd3;
 }
-

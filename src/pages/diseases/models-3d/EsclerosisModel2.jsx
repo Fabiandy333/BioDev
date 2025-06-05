@@ -38,13 +38,10 @@ const EsclerosisModel2 = ({ isRotating, setIsRotating }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [rotationY, rotationX, isRotating]);
 
-  // Aplicar sombras a todos los meshes del modelo
   useEffect(() => {
     model.scene.traverse((child) => {
       if (child.isMesh) {
         child.castShadow = true;
-        child.receiveShadow = true;
-        child.material.depthWrite = true;
       }
     });
   }, [model]);
