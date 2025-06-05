@@ -19,13 +19,13 @@ const Experience3d = () => {
 
   const handleBackClick = () => {
     if (model === 'migraine') {
-      setModel('esclerosis'); // Si estamos en Migraine, volver a Esclerosis
+      setModel('esclerosis'); // Si estás en Migraña, regresa a Esclerosis
     } else if (model === 'esclerosis') {
-      setModel('alzheimer'); // Si estamos en Esclerosis, volver a Alzheimer
+      setModel('alzheimer'); // Si estás en Esclerosis, regresa a Alzheimer
     } else if (model === 'alzheimer') {
-      setModel('acv'); // Si estamos en Alzheimer, volver a ACV
+      setModel('acv'); // Si estás en Alzheimer, regresa a ACV
     } else {
-      setStartExperience(false); // Si no estamos en ninguno de esos modelos, volver al inicio
+      setStartExperience(false); // Si no estás en Migraña, Esclerosis ni Alzheimer, regresa a la vista inicial
     }
   };
 
@@ -38,6 +38,22 @@ const Experience3d = () => {
       setModel('esclerosis'); // Cambiar al modelo Esclerosis
     } else if (model === 'esclerosis') {
       setModel('migraine'); // Cambiar al modelo Migraña
+    }
+  };
+
+  // Función para obtener el título del modelo
+  const getModelTitle = () => {
+    switch (model) {
+      case 'acv':
+        return "Accidente Cerebro Vascular";
+      case 'alzheimer':
+        return "Alzheimer";
+      case 'esclerosis':
+        return "Esclerosis Múltiple";
+      case 'migraine':
+        return "Migraña";
+      default:
+        return "";
     }
   };
 
@@ -59,6 +75,13 @@ const Experience3d = () => {
             className="back-button" 
             onClick={handleBackClick} 
           />
+        </div>
+      )}
+
+      {/* Título del modelo */}
+      {startExperience && (
+        <div className="model-title">
+          <h2>{getModelTitle()}</h2>
         </div>
       )}
 

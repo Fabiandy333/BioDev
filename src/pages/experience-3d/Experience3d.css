@@ -117,3 +117,15 @@
 .next-button:hover {
   opacity: 1;
 }
+
+.model-title {
+  position: absolute;
+  top: 20px;  /* Ajusta la posición desde la parte superior */
+  left: 50%;
+  transform: translateX(-50%);  /* Centra el texto horizontalmente */
+  font-size: 2rem;
+  color: #2d3436; /* Color blanco para el texto */
+  font-weight: bold;
+  z-index: 10;
+}
+
