@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import Brain2 from "../../pages/diseases/models-3d/Brain2"; // Modelo de cerebro
@@ -15,24 +15,30 @@ const Experience3d = () => {
 
   const handleStartClick = () => {
     setStartExperience(true); // Al hacer clic, se inicia la experiencia
+    setModel('acv'); // Establecemos el primer modelo para que se muestre inmediatamente
   };
 
+  useEffect(() => {
+    if (startExperience && model === 'brain') {
+      setModel('acv'); // Establecer el primer modelo al iniciar la experiencia
+    }
+  }, [startExperience]);
+
   const handleBackClick = () => {
-    if (model === 'migraine') {
+    if (model === 'acv') {
+      setModel('brain'); // Regresar al modelo Brain2
+      setStartExperience(false); // Vuelve a la pantalla principal
+    } else if (model === 'migraine') {
       setModel('esclerosis'); // Si estás en Migraña, regresa a Esclerosis
     } else if (model === 'esclerosis') {
       setModel('alzheimer'); // Si estás en Esclerosis, regresa a Alzheimer
     } else if (model === 'alzheimer') {
       setModel('acv'); // Si estás en Alzheimer, regresa a ACV
-    } else {
-      setStartExperience(false); // Si no estás en Migraña, Esclerosis ni Alzheimer, regresa a la vista inicial
     }
   };
 
   const handleNextClick = () => {
-    if (model === 'brain') {
-      setModel('acv'); // Cambiar al modelo ACV
-    } else if (model === 'acv') {
+    if (model === 'acv') {
       setModel('alzheimer'); // Cambiar al modelo Alzheimer
     } else if (model === 'alzheimer') {
       setModel('esclerosis'); // Cambiar al modelo Esclerosis
@@ -91,8 +97,8 @@ const Experience3d = () => {
           {/* Solo añadir Staging (Environment) si la experiencia ha comenzado */}
           {startExperience && <Staging />}
           
-          {/* Mostrar el modelo Brain2 solo si no se ha comenzado la experiencia */}
-          {!startExperience && <Brain2 scale={2} />}
+          {/* Mostrar el modelo Brain2 si no se ha comenzado la experiencia o si estamos en el modelo 'brain' */}
+          {(model === 'brain') && <Brain2 scale={2} />}
           
           {/* Condicionalmente mostrar el modelo basado en el estado 'model' */}
           {startExperience && model === 'acv' && <AcvModel3 />}
