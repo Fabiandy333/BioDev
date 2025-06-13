@@ -54,7 +54,7 @@ const DiseasesRoutes = () => {
       <Route path="/migrana/tratamiento" element={
         <Treatment
           title="Tratamiento"
-          description="El tratamiento de la migraña puede incluir analgésicos, medicamentos preventivos, cambios en el estilo de vida y terapias alternativas como acupuntura o fisioterapia. Es fundamental seguir las indicaciones médicas personalizadas."
+          description="El tratamiento de la migraña se basa en aliviar el dolor y prevenir nuevos episodios. Se usan analgésicos, triptanes y, en casos recurrentes, medicamentos preventivos. Es clave mantener hábitos saludables: dormir bien, evitar el estrés, hidratarse y reconocer desencadenantes como ciertos alimentos o luces fuertes. También pueden ayudar terapias como acupuntura o fisioterapia, siempre bajo control médico."
           imageLeft="/tratamiento.png"
         />
       } />
@@ -111,7 +111,7 @@ const DiseasesRoutes = () => {
       <Route path="/esclerosis/sintomas" element={
         <PreventionEsclerosis
           title="Sintomas"
-          description="Aunque no existe una forma definitiva de prevenir la esclerosis múltiple, mantener una buena salud inmunológica, hacer ejercicio regularmente y evitar el tabaquismo pueden ayudar a reducir el riesgo."
+          description="La esclerosis múltiple presenta síntomas como fatiga extrema, visión borrosa o doble, dificultad para caminar, pérdida del equilibrio, hormigueo o entumecimiento en extremidades, debilidad muscular, problemas cognitivos y espasmos musculares. Estos síntomas pueden variar en intensidad según la persona."
         />
       } />
       <Route path="/esclerosis/autocuidado" element={

@@ -1,4 +1,5 @@
 .symptoms-container {
+  position: relative;
   max-width: 1200px;
   margin: auto;
   padding: 2rem;
@@ -61,7 +62,7 @@
 .next-button {
   position: fixed;
   top: 20px;
-  right: 20px; /* para flecha de "siguiente" derecha */
+  right: 100px; /* para flecha de "siguiente" derecha */
   z-index: 1000;
   background: none;
   border: none;
@@ -97,14 +98,14 @@
   color: #aaa;
 }
 .migraine-model-canvas {
-  margin: 0 auto; /* centra horizontalmente */
   width: 100%;
-  max-width: 400px;
-  height: 400px;
+  max-width: 500px;   /* antes 400px */
+  height: 500px;      /* antes 400px */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 18rem;
+  margin-right: -5rem;
+  margin-top: 2rem; /* antes 10rem, por ejemplo */
 }
 
 /* Ajuste para los modelos 3D de Esclerosis */
@@ -114,7 +115,7 @@
   max-width: 550px; /* Aumenta el tamaño máximo del modelo */
   height: 545px; /* Aumenta la altura del modelo */
   align-items: top;
-  margin-right: 5rem; /* Elimina el margen derecho */
+  margin-right: 14rem; /* Elimina el margen derecho */
   margin-top: -4.5rem;
 }
 
@@ -163,40 +164,7 @@
   text-align: center;
 }
 
-/* Botón Pausa 3D */
-.pausa-button {
-  position: fixed;
-  top: 50%; /* Centra verticalmente */
-  right: 10px; /* Coloca el botón a la derecha */
-  transform: translateY(
-    -50%
-  ); /* Ajusta para que se alinee al centro de la altura */
-  background-color: #445ef2; /* Color de fondo que combina con el resto del diseño */
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease; /* Transición para el hover */
-  margin-right: 24rem;
-  margin-top: 3rem;
-  z-index: 9999; /* Asegura que el botón esté por encima de otros elementos */
-}
-
-/* Efecto 3D al pasar el mouse */
-.pausa-button:hover {
-  transform: translateY(-50%) scale(1.1) translateZ(10px); /* Da un efecto de elevación */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
-}
-
-/* Efecto de presionar el botón */
-.pausa-button:active {
-  transform: translateY(-50%) scale(1) translateZ(5px); /* Reduce la elevación al hacer clic */
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más pequeña */
-}
+/* -------- AQUÍ FUE ELIMINADO EL BLOQUE DE .pausa-button ---------- */
 
 .return-button-container {
   width: 100%;
@@ -223,3 +191,33 @@
 .return-button:hover {
   background-color: #324dd3;
 }
+
+/* Ubica el icono de info junto al modelo, en el círculo rojo */
+.info-icon {
+  position: fixed;
+  left: 30%;        /* Ajusta este valor hasta que quede en el punto exacto */
+  top: 45%;         /* Ajusta este valor también */
+  width: 32px;
+  height: auto;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Tooltip apareciendo encima del icono */
+.tooltip {
+  position: fixed;
+  left: 30%;        /* Mismo left que el icono */
+  top: 45%;         /* Mismo top que el icono */
+  transform: translate(-110%, -50%); /* Desplaza el tooltip a la izquierda y centrándolo verticalmente */
+  width: 240px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  color: #444;
+  font-size: 0.85rem;
+  z-index: 1000;
+  text-align: left;
+}
+

@@ -1,34 +1,25 @@
+// src/components/Prevention.jsx
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Text, Text3D, Html, Center } from "@react-three/drei";
 import { useState } from "react";
 import MigraineModel2 from "../../diseases/models-3d/MigraineModel2";
 
 const Prevention = ({ title, description }) => {
   const navigate = useNavigate();
+  const [isRotating, setIsRotating] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
-  const [isRotating, setIsRotating] = useState(true); // Estado para controlar si el modelo está rotando
-
-  const handleBackClick = () => {
-    navigate("/enfermedades");
-  };
-
-  const goToNext = () => {
-    navigate("/enfermedades/migrana/autocuidado");
-  };
-
-  // Función para cambiar el estado de rotación (pausar o reanudar)
-  const handlePauseClick = () => {
-    setIsRotating(!isRotating);
-  };
+  const handleBackClick = () => navigate("/enfermedades");
+  const goToNext = () => navigate("/enfermedades/migrana/tratamiento");
+  const handlePauseClick = () => setIsRotating(!isRotating);
 
   return (
     <div className="symptoms-container">
       <header className="symptoms-header">
         <h1>{title}</h1>
       </header>
-
       <div className="return-button-container">
         <img
           src="/back.png"
@@ -37,48 +28,144 @@ const Prevention = ({ title, description }) => {
           onClick={handleBackClick}
         />
       </div>
-
       <main className="symptoms-content">
         <div className="symptom-left">
           <div className="migraine-model-canvas">
-            <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
-              <ambientLight intensity={2.2} />
-              <directionalLight position={[5, 5, 5]} intensity={2.5} />
-              <directionalLight position={[0, -3, 5]} intensity={1.8} />
-              <directionalLight position={[0, 0, -5]} intensity={1.2} />
+            <Canvas shadows camera={{ position: [0, 0, 6], fov: 50 }}>
+              {/* Iluminación */}
+              <ambientLight intensity={0.5} />
+              <directionalLight
+                position={[5, 5, 5]}
+                intensity={2.5}
+                castShadow
+                shadow-mapSize-width={1024}
+                shadow-mapSize-height={1024}
+                shadow-bias={-0.0001}
+                shadow-radius={10}
+              />
+              <pointLight position={[0, 5, 0]} intensity={0.5} castShadow />
+              <hemisphereLight
+                skyColor="#ffffff"
+                groundColor="#cccccc"
+                intensity={0.1}
+              />
+
+              {/* Controles de órbita */}
               <OrbitControls enableZoom={false} enablePan={false} />
-              <MigraineModel2 isRotating={isRotating} setIsRotating={setIsRotating} />
+
+              {/* ——— TEXTO 3D EXTRUIDO: "SINTOMAS" ——— */}
+              <Center top position={[-0.01, -2.7, 0]}>
+                <Text3D
+                  font="/fonts/helvetiker_regular_typeface.json"
+                  size={0.20}
+                  height={0.05}
+                  curveSegments={12}
+                  bevelEnabled
+                  bevelThickness={0.02}
+                  bevelSize={0.015}
+                  bevelOffset={0}
+                  bevelSegments={4}
+                >
+                  Que sientes
+                  {/* material frontal */}
+                  <meshStandardMaterial attach="material" color="#ff6cec" />
+                  {/* material lateral (contorno) */}
+                  <meshStandardMaterial attach="material-1" color="#3b0056" />
+                </Text3D>
+              </Center>
+
+              {/* Modelo 3D */}
+              <MigraineModel2
+                isRotating={isRotating}
+                setIsRotating={setIsRotating}
+              />
+
+              {/* Botón 3D de pausa/reanudar */}
+              <mesh position={[0, 2, 0]} onClick={handlePauseClick}>
+                <planeGeometry args={[1.5, 0.5]} />
+                <meshBasicMaterial color="blue" />
+              </mesh>
+              <Text
+                position={[0, 2, 0.01]}
+                fontSize={0.2}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+              >
+                {isRotating ? "Pausa" : "Reanudar"}
+              </Text>
+
+              {/* Icono de información */}
+              <Html position={[-2.2, 1.7, 0]}>
+                <img
+                  src="/info.png"
+                  alt="Información"
+                  style={{
+                    width: "32px",
+                    height: "auto",
+                    cursor: "pointer",
+                    zIndex: 1001,
+                  }}
+                  onClick={() => setShowInfo((v) => !v)}
+                />
+                {showInfo && (
+                  <div
+                    style={{
+                      marginTop: "8px",
+                      background: "rgba(255,255,255,0.98)",
+                      border: "1.5px solid #bbb",
+                      borderRadius: "12px",
+                      boxShadow: "0 6px 16px rgba(80,80,80,0.09)",
+                      color: "#222",
+                      fontSize: "1rem",
+                      padding: "1.2rem 1.2rem",
+                      width: "290px",
+                      maxWidth: "340px",
+                      textAlign: "left",
+                      position: "absolute",
+                      left: "0",
+                      top: "34px",
+                      zIndex: 1100,
+                      userSelect: "text",
+                    }}
+                  >
+                    <b>Instrucciones:</b>
+                    <ul style={{ margin: "0.4em 0 0 1.2em", padding: 0 }}>
+                      <li>Haz clic en el modelo para pausar y reanudar la rotación.</li>
+                      <li>Puedes rotar el modelo mientras esté en pausa.</li>
+                      <li>Usa las flechas del teclado para rotarlo.</li>
+                      <li>Pulsa la tecla <b>R</b> para restablecer la posición del modelo.</li>
+                      <li>Haz <b>doble clic</b> sobre el modelo para hacer zoom en esa zona. Haz doble clic de nuevo para volver.</li>
+                      <li>
+                        <span style={{ color: "#2e54a9", fontWeight: 500 }}>
+                          Haz clic en el icono <img src="/info.png" alt="info" width={18} style={{ verticalAlign: "middle" }} /> para cerrar.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </Html>
+
+              {/* Sombra */}
+              <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, -5, 0]}
+                receiveShadow
+              >
+                <planeGeometry args={[20, 20]} />
+                <shadowMaterial opacity={0.4} />
+              </mesh>
             </Canvas>
           </div>
         </div>
 
         <div className="symptom-right">
           <p>{description}</p>
-
           <button onClick={goToNext} className="next-button">
             <img src="/next.png" alt="Siguiente" />
           </button>
         </div>
       </main>
-
-      {/* Texto explicativo fijo */}
-      <div className="instruction-text">
-        <p><strong>Instrucciones:</strong></p>
-        <p>
-          <p>Haz clic en el modelo para pausar la rotación.</p>
-          <p>Puedes rotar el modelo mientras este en pausa.</p>
-          <p>Usa las flechas del teclado para rotarlo.</p>
-          <p>Haz clic nuevamente para reanudar el movimiento.</p>
-        </p>
-      </div>
-
-      {/* Botón Pausa o Reanudar 3D */}
-      <button
-        className="pausa-button"
-        onClick={handlePauseClick} // Cambia el estado de rotación al hacer clic
-      >
-        {isRotating ? "Pausa" : "Reanudar"} {/* Cambia el texto del botón según el estado */}
-      </button>
     </div>
   );
 };

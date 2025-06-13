@@ -1,111 +1,145 @@
 import React, { useState, useEffect } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Brain2 from "../../pages/diseases/models-3d/Brain2"; // Modelo de cerebro
-import AcvModel3 from "../../pages/diseases/models-3d/AcvModel3"; // Agregar otros modelos aquí
+import Brain2 from "../../pages/diseases/models-3d/Brain2";
+import AcvModel3 from "../../pages/diseases/models-3d/AcvModel3";
 import AlzheimerModel3 from "../../pages/diseases/models-3d/AlzheimerModel3";
 import EsclerosisModel3 from "../../pages/diseases/models-3d/EsclerosisModel3";
 import MigraineModel3 from "../../pages/diseases/models-3d/MigraineModel3";
 import Staging from "../staging/Staging";
+import Staging1 from "../staging/Staging1";
 import './Experience3d.css';
 
 const Experience3d = () => {
-  const [startExperience, setStartExperience] = useState(false); // Si la experiencia ha comenzado
-  const [model, setModel] = useState('brain'); // Controlar el modelo actual que se está mostrando
+  const [startExperience, setStartExperience] = useState(false);
+  const [scenario, setScenario] = useState(null); // null: aún no elegido, 'hospital1' o 'hospital2'
+  const [model, setModel] = useState('brain');
 
+  // Volver al menú principal desde el menú de escenarios
+  const handleBackToMainMenu = () => {
+    setStartExperience(false);
+    setScenario(null);
+    setModel('brain');
+  };
+
+  // Paso 1: Comenzar experiencia muestra menú de escenarios
   const handleStartClick = () => {
-    setStartExperience(true); // Al hacer clic, se inicia la experiencia
-    setModel('acv'); // Establecemos el primer modelo para que se muestre inmediatamente
+    setStartExperience(true);
+  };
+
+  // Paso 2: Seleccionar escenario (hospital)
+  const handleScenarioSelect = (hospital) => {
+    setScenario(hospital);
+    setModel('acv'); // Comienza el recorrido en ACV
   };
 
   useEffect(() => {
-    if (startExperience && model === 'brain') {
-      setModel('acv'); // Establecer el primer modelo al iniciar la experiencia
+    if (scenario && model === 'brain') {
+      setModel('acv');
     }
-  }, [startExperience]);
+  }, [scenario]);
 
+  // Botón regresar retrocede modelos o vuelve al menú escenarios
   const handleBackClick = () => {
     if (model === 'acv') {
-      setModel('brain'); // Regresar al modelo Brain2
-      setStartExperience(false); // Vuelve a la pantalla principal
+      setScenario(null); // Vuelve a elegir escenario
+      setModel('brain');
     } else if (model === 'migraine') {
-      setModel('esclerosis'); // Si estás en Migraña, regresa a Esclerosis
+      setModel('esclerosis');
     } else if (model === 'esclerosis') {
-      setModel('alzheimer'); // Si estás en Esclerosis, regresa a Alzheimer
+      setModel('alzheimer');
     } else if (model === 'alzheimer') {
-      setModel('acv'); // Si estás en Alzheimer, regresa a ACV
+      setModel('acv');
     }
   };
 
+  // Siguiente modelo
   const handleNextClick = () => {
-    if (model === 'acv') {
-      setModel('alzheimer'); // Cambiar al modelo Alzheimer
-    } else if (model === 'alzheimer') {
-      setModel('esclerosis'); // Cambiar al modelo Esclerosis
-    } else if (model === 'esclerosis') {
-      setModel('migraine'); // Cambiar al modelo Migraña
-    }
+    if (model === 'acv') setModel('alzheimer');
+    else if (model === 'alzheimer') setModel('esclerosis');
+    else if (model === 'esclerosis') setModel('migraine');
   };
 
-  // Función para obtener el título del modelo
+  // Título
   const getModelTitle = () => {
     switch (model) {
-      case 'acv':
-        return "Accidente Cerebro Vascular";
-      case 'alzheimer':
-        return "Alzheimer";
-      case 'esclerosis':
-        return "Esclerosis Múltiple";
-      case 'migraine':
-        return "Migraña";
-      default:
-        return "";
+      case 'acv': return "Accidente Cerebro Vascular";
+      case 'alzheimer': return "Alzheimer";
+      case 'esclerosis': return "Esclerosis Múltiple";
+      case 'migraine': return "Migraña";
+      default: return "";
     }
   };
 
+  // Menú elegir escenario
+  if (startExperience && !scenario) {
+    return (
+      <div className="exp3d-container full-screen">
+        {/* Flecha de regreso en menú de escenarios */}
+        <div className="exp3d-menu-back-btn-container">
+          <img
+            src="/back2.png"
+            alt="Volver"
+            className="exp3d-menu-back-btn"
+            onClick={handleBackToMainMenu}
+          />
+        </div>
+        <h2 className="exp3d-heading" style={{marginTop: "2.5rem"}}>Elegir escenario</h2>
+        <div className="scenario-menu">
+          <div className="scenario-card" onClick={() => handleScenarioSelect('hospital1')}>
+            <img src="/Hospital.png" alt="Hospital 1" className="scenario-img" />
+            <div className="scenario-title">Hospital 1</div>
+          </div>
+          <div className="scenario-card" onClick={() => handleScenarioSelect('hospital2')}>
+            <img src="/Hospital1.png" alt="Hospital 2" className="scenario-img" />
+            <div className="scenario-title">Hospital 2</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Pantalla normal: experiencia
   return (
-    <div className={`experience3d-container ${startExperience ? 'full-screen' : ''}`}>
-      {/* Mostrar texto solo si la experiencia no ha comenzado */}
+    <div className={`exp3d-container ${startExperience && scenario ? 'full-screen' : ''}`}>
       {!startExperience && (
-        <div className="experience3d-text">
-          <h1 className="experience3d-heading">Bienvenido a la experiencia 3D</h1>
+        <div className="exp3d-text">
+          <h1 className="exp3d-heading">Bienvenido a la experiencia 3D</h1>
         </div>
       )}
 
-      {/* Flecha de regreso */}
-      {startExperience && (
-        <div className="back-button-container">
+      {startExperience && scenario && (
+        <div className="exp3d-back-btn-container">
           <img 
-            src="/back.png" 
+            src="/back1.png" 
             alt="Regresar" 
-            className="back-button" 
+            className="exp3d-back-btn" 
             onClick={handleBackClick} 
           />
         </div>
       )}
 
-      {/* Título del modelo */}
-      {startExperience && (
-        <div className="model-title">
+      {startExperience && scenario && (
+        <div className="exp3d-model-title">
           <h2>{getModelTitle()}</h2>
         </div>
       )}
 
-      {/* El modelo 3D centrado en la pantalla */}
-      <div className={`experience3d-canvas ${startExperience ? 'full-screen-canvas' : ''}`}>
-        <Canvas camera={{ position: [0, 1, 5], fov: 75 }}>
-          {/* Solo añadir Staging (Environment) si la experiencia ha comenzado */}
-          {startExperience && <Staging />}
-          
-          {/* Mostrar el modelo Brain2 si no se ha comenzado la experiencia o si estamos en el modelo 'brain' */}
+      <div className={`exp3d-canvas ${startExperience && scenario ? 'full-screen-canvas' : ''}`}>
+        <Canvas
+          key={scenario || "no-scenario"}
+          camera={{ position: [0, 1, 5], fov: 75 }}
+        >
+          {/* Escenario depende de la selección */}
+          {startExperience && scenario === 'hospital1' && <Staging />}
+          {startExperience && scenario === 'hospital2' && <Staging1 />}
+
           {(model === 'brain') && <Brain2 scale={2} />}
-          
-          {/* Condicionalmente mostrar el modelo basado en el estado 'model' */}
-          {startExperience && model === 'acv' && <AcvModel3 />}
-          {startExperience && model === 'alzheimer' && <AlzheimerModel3 />}
-          {startExperience && model === 'esclerosis' && <EsclerosisModel3 />}
-          {startExperience && model === 'migraine' && <MigraineModel3 />}
-          
+          {startExperience && scenario && model === 'acv' && <AcvModel3 />}
+          {startExperience && scenario && model === 'alzheimer' && <AlzheimerModel3 />}
+          {startExperience && scenario && model === 'esclerosis' && <EsclerosisModel3 />}
+          {startExperience && scenario && model === 'migraine' && <MigraineModel3 />}
+
           <ambientLight intensity={1.5} />
           <directionalLight position={[5, 5, 5]} intensity={3} />
           <directionalLight position={[0, -3, 5]} intensity={1.5} />
@@ -115,22 +149,20 @@ const Experience3d = () => {
         </Canvas>
       </div>
 
-      {/* Mostrar botón solo si la experiencia no ha comenzado */}
       {!startExperience && (
-        <div className="experience3d-button">
-          <button className="experience3d-btn" onClick={handleStartClick}>
+        <div className="exp3d-button">
+          <button className="exp3d-btn" onClick={handleStartClick}>
             Comenzar experiencia
           </button>
         </div>
       )}
 
-      {/* Flecha de "Siguiente" solo se muestra si la experiencia ha comenzado y el modelo no es Migraña */}
-      {startExperience && model !== 'migraine' && (
-        <div className="next-button-container">
+      {startExperience && scenario && model !== 'migraine' && (
+        <div className="exp3d-next-btn-container">
           <img 
-            src="/next.png" 
+            src="/next1.png" 
             alt="Siguiente modelo" 
-            className="next-button" 
+            className="exp3d-next-btn" 
             onClick={handleNextClick} 
           />
         </div>
