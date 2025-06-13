@@ -1,34 +1,25 @@
+// src/components/PreventionACV.jsx
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, Text, Text3D, Html, Center } from "@react-three/drei";
 import { useState } from "react";
 import AcvModel2 from "../../diseases/models-3d/AcvModel2";
 
 const PreventionACV = ({ title, description }) => {
   const navigate = useNavigate();
+  const [isRotating, setIsRotating] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
-  const [isRotating, setIsRotating] = useState(true); // Estado para controlar si el modelo está rotando
-
-  const handleBackClick = () => {
-    navigate("/enfermedades");
-  };
-
-  const goToNext = () => {
-    navigate("/enfermedades/acv/autocuidado");
-  };
-
-  // Función para cambiar el estado de rotación (pausar o reanudar)
-  const handlePauseClick = () => {
-    setIsRotating(!isRotating);
-  };
+  const handleBackClick = () => navigate("/enfermedades");
+  const goToNext = () => navigate("/enfermedades/acv/tratamiento");
+  const handlePauseClick = () => setIsRotating(!isRotating);
 
   return (
     <div className="symptoms-container">
       <header className="symptoms-header">
         <h1>{title}</h1>
       </header>
-
       <div className="return-button-container">
         <img
           src="/back.png"
@@ -37,17 +28,100 @@ const PreventionACV = ({ title, description }) => {
           onClick={handleBackClick}
         />
       </div>
-
       <main className="symptoms-content">
         <div className="symptom-left">
           <div className="acv-model-canvas">
-            <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
-              <ambientLight intensity={2.2} />
-              <directionalLight position={[5, 5, 5]} intensity={2.5} />
-              <directionalLight position={[0, -3, 5]} intensity={1.8} />
-              <directionalLight position={[0, 0, -5]} intensity={1.2} />
+            <Canvas shadows camera={{ position: [0, 0, 6], fov: 50 }}>
+              {/* Iluminación */}
+              <ambientLight intensity={0.5} />
+              <directionalLight
+                position={[5, 5, 5]}
+                intensity={2.5}
+                castShadow
+                shadow-mapSize-width={1024}
+                shadow-mapSize-height={1024}
+                shadow-bias={-0.0001}
+                shadow-radius={10}
+              />
+              <pointLight position={[0, 5, 0]} intensity={0.5} castShadow />
+              <hemisphereLight
+                skyColor="#ffffff"
+                groundColor="#cccccc"
+                intensity={0.1}
+              />
+
+              {/* Controles */}
               <OrbitControls enableZoom={false} enablePan={false} />
-              <AcvModel2 isRotating={isRotating} setIsRotating={setIsRotating} />
+
+              {/* Modelo 3D */}
+              <AcvModel2
+                isRotating={isRotating}
+                setIsRotating={setIsRotating}
+              />
+
+              {/* Botón 3D de pausa/reanudar */}
+              <mesh position={[0, 2, 0]} onClick={handlePauseClick}>
+                <planeGeometry args={[1.5, 0.5]} />
+                <meshBasicMaterial color="blue" />
+              </mesh>
+              <Text
+                position={[0, 2, 0.01]}
+                fontSize={0.2}
+                color="white"
+                anchorX="center"
+                anchorY="middle"
+              >
+                {isRotating ? "Pausa" : "Reanudar"}
+              </Text>
+
+              {/* Instrucciones */}
+              <Html position={[-2.2, 1.7, 0]}>
+                <img
+                  src="/info.png"
+                  alt="Información"
+                  style={{
+                    width: "32px",
+                    height: "auto",
+                    cursor: "pointer",
+                    zIndex: 1001,
+                  }}
+                  onClick={() => setShowInfo((v) => !v)}
+                />
+                {showInfo && (
+                  <div style={{ /* estilos idénticos */ }}>
+                    {/* …contenido… */}
+                  </div>
+                )}
+              </Html>
+
+              {/* Sombra */}
+              <mesh
+                rotation={[-Math.PI / 2, 0, 0]}
+                position={[0, -5, 0]}
+                receiveShadow
+              >
+                <planeGeometry args={[20, 20]} />
+                <shadowMaterial opacity={0.4} />
+              </mesh>
+
+              {/* --- TEXTO 3D EXTRUIDO ABAJO: "¿Qué sientes?" --- */}
+              <Center position={[0, -2.7, 0]}>
+                <Text3D
+                  font="/fonts/helvetiker_regular_typeface.json"
+                  size={0.20}
+                  height={0.05}
+                  curveSegments={12}
+                  bevelEnabled
+                  bevelThickness={0.02}
+                  bevelSize={0.015}
+                  bevelOffset={0}
+                  bevelSegments={4}
+                >
+                  Que sientes
+                  <meshStandardMaterial attach="material" color="#ff6cec" />
+                  <meshStandardMaterial attach="material-1" color="#3b0056" />
+                </Text3D>
+              </Center>
             </Canvas>
           </div>
         </div>
@@ -59,25 +133,6 @@ const PreventionACV = ({ title, description }) => {
           </button>
         </div>
       </main>
-
-      {/* Texto explicativo fijo */}
-      <div className="instruction-text">
-        <p><strong>Instrucciones:</strong></p>
-        <p>
-          <p>Haz clic en el modelo para pausar la rotación.</p>
-          <p>Puedes rotar el modelo mientras este en pausa.</p>
-          <p>Usa las flechas del teclado para rotarlo.</p>
-          <p>Haz clic nuevamente para reanudar el movimiento.</p>
-        </p>
-      </div>
-
-      {/* Botón Pausa o Reanudar 3D */}
-      <button
-        className="pausa-button"
-        onClick={handlePauseClick} // Cambia el estado de rotación al hacer clic
-      >
-        {isRotating ? "Pausa" : "Reanudar"} {/* Cambia el texto del botón según el estado */}
-      </button>
     </div>
   );
 };

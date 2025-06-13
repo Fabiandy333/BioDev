@@ -1,4 +1,4 @@
-.experience3d-container {
+.exp3d-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,17 +6,16 @@
   height: 100vh;
 }
 
-.experience3d-container.full-screen {
+.exp3d-container.full-screen {
   justify-content: flex-start;
-  /* Alinea todo al inicio para que no haya espacio extra */
 }
 
-.experience3d-text {
+.exp3d-text {
   text-align: center;
   margin-bottom: 1rem;
 }
 
-.experience3d-heading {
+.exp3d-heading {
   font-size: 2.5rem;
   color: #2d3436;
   font-weight: 700;
@@ -24,7 +23,7 @@
   margin-top: -6rem;
 }
 
-.experience3d-canvas {
+.exp3d-canvas {
   width: 70vw;
   height: 50vh;
   margin-bottom: 1rem;
@@ -32,24 +31,21 @@
   transition: all 0.5s ease;
 }
 
-.experience3d-canvas.full-screen-canvas {
+.exp3d-canvas.full-screen-canvas {
   width: 100vw;
-  /* Ahora ocupa el 100% del ancho */
   height: 100vh;
-  /* Ahora ocupa el 100% del alto */
   margin: 0;
-  /* Elimina márgenes */
 }
 
-.experience3d-model {
+.exp3d-model {
   transition: transform 0.5s ease;
 }
 
-.experience3d-button {
+.exp3d-button {
   margin-top: 2rem;
 }
 
-.experience3d-btn {
+.exp3d-btn {
   padding: 0.75rem 1rem;
   font-size: 1rem;
   background-color: #3f5efb;
@@ -60,72 +56,121 @@
   transition: background 0.3s ease;
 }
 
-.experience3d-btn:hover {
+.exp3d-btn:hover {
   background-color: #324dd3;
 }
 
-/* Contenedor del botón de regresar */
-.back-button-container {
+/* Contenedor del botón de regresar (experiencia 3D) */
+.exp3d-back-btn-container {
   position: absolute;
   top: 20px;
-  /* Ajusta la posición desde la parte superior */
   left: 20px;
-  /* Ajusta la posición desde la izquierda */
   z-index: 100;
-  /* Asegúrate de que esté por encima del modelo 3D */
   margin-top: 30rem;
   margin-left: -20rem;
 }
 
-/* Estilo para la imagen de la flecha */
-.back-button {
+/* Estilo para la imagen de la flecha de regresar */
+.exp3d-back-btn {
   width: 50px;
-  /* Ajusta el tamaño de la flecha */
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.3s ease;
 }
 
-/* Efecto cuando el usuario pasa el ratón por encima de la flecha */
-.back-button:hover {
+.exp3d-back-btn:hover {
   opacity: 1;
 }
 
-/* Contenedor del botón de siguiente modelo */
-.next-button-container {
+.exp3d-next-btn-container {
   position: absolute;
   top: 20px;
-  /* Ajusta la posición desde la parte superior */
   right: 20px;
-  /* Ajusta la posición desde la derecha */
   z-index: 100;
-  /* Asegúrate de que esté por encima del modelo 3D */
 }
 
-/* Estilo para la imagen de la flecha "next" */
-.next-button {
+.exp3d-next-btn {
   width: 50px;
-  /* Ajusta el tamaño de la flecha */
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.3s ease;
   margin-top: 30rem;
-  margin-right: 2rem;
+  margin-right: -36rem;
 }
 
-/* Efecto cuando el usuario pasa el ratón por encima de la flecha */
-.next-button:hover {
+.exp3d-next-btn:hover {
   opacity: 1;
 }
 
-.model-title {
+.exp3d-model-title {
   position: absolute;
-  top: 20px;  /* Ajusta la posición desde la parte superior */
+  top: 20px;
   left: 50%;
-  transform: translateX(-50%);  /* Centra el texto horizontalmente */
+  transform: translateX(-50%);
   font-size: 2rem;
-  color: #2d3436; /* Color blanco para el texto */
+  color: #2d3436;
   font-weight: bold;
   z-index: 10;
 }
 
+/* --------- Menú de escenarios tipo tarjetas --------- */
+
+.scenario-menu {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.scenario-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 14px rgba(50, 60, 100, 0.10);
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+  width: 220px;
+}
+
+.scenario-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 8px 28px rgba(40, 70, 160, 0.16);
+  background: #f7f9fa;
+}
+
+.scenario-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e3e9fa;
+  box-shadow: 0 4px 16px rgba(40, 40, 93, 0.10);
+  margin-bottom: 1rem;
+}
+
+.scenario-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #223;
+}
+
+/* Flecha de volver (solo menú de escenarios) */
+.exp3d-menu-back-btn-container {
+  position: absolute;
+  top: 37px;   /* Ajusta según tu header */
+  left: 90px;  /* Ajusta para estar debajo del logo */
+  z-index: 100;
+}
+
+.exp3d-menu-back-btn {
+  width: 50px;           /* Igual que las otras flechas */
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+  margin-top: 5rem;
+}
+
+.exp3d-menu-back-btn:hover {
+  opacity: 1;
+}

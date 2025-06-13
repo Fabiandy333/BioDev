@@ -8,11 +8,6 @@ const SelfCare = ({ title, description, imageLeft, imageRight }) => {
     navigate("/enfermedades");
   };
 
-  const goToNext = () => {
-    navigate("/enfermedades/migrana/tratamiento");
-  };
-  
-
   return (
     <div className="symptoms-container">
       <header className="symptoms-header">
@@ -34,10 +29,6 @@ const SelfCare = ({ title, description, imageLeft, imageRight }) => {
 
         <div className="symptom-right">
           <p>{description}</p>
-
-          <button onClick={goToNext} className="next-button">
-            <img src="/next.png" alt="Siguiente" />
-          </button>
         </div>
       </main>
     </div>
