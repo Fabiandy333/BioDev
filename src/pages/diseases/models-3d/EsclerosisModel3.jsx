@@ -1,55 +1,23 @@
-import { useGLTF } from '@react-three/drei';
-import React, { useRef } from 'react';
+import { useGLTF } from "@react-three/drei";
 
-const EsclerosisModel3 = () => {
-  const modelRef = useRef();
-  const { scene } = useGLTF('/models-3d/esclerosis-multiple.glb'); // Ruta del archivo GLB
+export function EsclerosisModel3({ scale = 1, ...props }) {
+  const { nodes, materials } = useGLTF("/models-3d/esclerosis-multiple3.glb");
 
   return (
-    <>
-      <ambientLight intensity={0.2} />
-      <directionalLight
-        position={[10, 10, 10]}
-        intensity={1.5}
+    <group scale={[scale, scale, scale]} {...props} dispose={null}>
+      <mesh
         castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-        shadow-bias={-0.0001}
-        shadow-radius={10}
-      />
-      <directionalLight
-        position={[-5, -5, -5]}
-        intensity={1.2}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-        shadow-bias={-0.0001}
-        shadow-radius={10}
-      />
-      <pointLight
-        position={[0, 5, 0]}
-        intensity={0.5}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-      />
-      <hemisphereLight
-        skyColor={"#ffffff"}
-        groundColor={"#cccccc"}
-        intensity={0.1}
-      />
-      <primitive
-        object={scene}
-        ref={modelRef}
-        scale={4}
-        position={[0, -0.5, 0]}
         receiveShadow
-        castShadow
+        geometry={
+          nodes["tripo_node_0fe757de-805a-40b6-83de-66f57e8c380e"].geometry
+        }
+        material={
+          materials["tripo_material_0fe757de-805a-40b6-83de-66f57e8c380e"]
+        }
       />
-    </>
+    </group>
   );
-};
+}
 
-useGLTF.preload('/models-3d/esclerosis-multiple.glb'); // Pre-cargar el modelo
-
+useGLTF.preload("/models-3d/esclerosis-multiple3.glb");
 export default EsclerosisModel3;
