@@ -49,10 +49,26 @@ const Treatment = ({ title, description }) => {
                 intensity={0.1}
               />
               <OrbitControls enableZoom={false} enablePan={false} />
+              
+              {/* ======= TEXTO 2D SOBRE EL MODELO ======= */}
+              <Text
+                position={[2, 1.5, 0]} /* Arriba del modelo, ajústalo si lo quieres más alto */
+                fontSize={0.22}
+                color="blue"
+                anchorX="center"
+                anchorY="middle"
+                maxWidth={3.5}
+                lineHeight={1.2}
+                font="/fonts/Beautiful_Valentine.otf"
+              >
+                {"Controla el dolor,\npreviene recaídas\ny cuida tus hábitos"}
+              </Text>
+
               <MigraineModel4
                 isRotating={isRotating}
                 setIsRotating={setIsRotating}
               />
+
               {/* 3D Pause/Resume Button */}
               <mesh position={[0, 2, 0]} onClick={handlePauseClick}>
                 <planeGeometry args={[1.5, 0.5]} />

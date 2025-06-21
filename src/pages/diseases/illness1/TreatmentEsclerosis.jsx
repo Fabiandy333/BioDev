@@ -54,6 +54,18 @@ const TreatmentEsclerosis = ({ title, description }) => {
               {/* Camera Controls */}
               <OrbitControls enableZoom={false} enablePan={false} />
 
+              {/* --- TEXTO 2D ENCIMA DEL MODELO: "¿Tratamiento?" --- */}
+              <Text
+                position={[2, 1, 0]}
+                fontSize={0.5}
+                color="blue"
+                anchorX="center"
+                anchorY="middle"
+                font="/fonts/Beautiful_Valentine.otf"
+              >
+                Terapia
+              </Text>
+
               {/* Interactive 3D Model */}
               <EsclerosisModel4
                 isRotating={isRotating}

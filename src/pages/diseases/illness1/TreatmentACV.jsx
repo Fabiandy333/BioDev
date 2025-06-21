@@ -51,6 +51,20 @@ const TreatmentACV = ({ title, description }) => {
 
               <OrbitControls enableZoom={false} enablePan={false} />
 
+              {/* ===== TEXTO 2D sobre el modelo ===== */}
+              <Text
+                position={[0.1, -2.5, 0]}
+                fontSize={0.25}
+                color="blue"
+                anchorX="center"
+                anchorY="middle"
+                font="/fonts/Beautiful_Valentine.otf"
+                maxWidth={3.8}
+                lineHeight={1.2}
+              >
+                {"El tratamiento\nsalva vidas."}
+              </Text>
+
               <AcvModel4
                 isRotating={isRotating}
                 setIsRotating={setIsRotating}

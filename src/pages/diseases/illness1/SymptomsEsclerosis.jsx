@@ -48,7 +48,7 @@ const SymptomsEsclerosis = () => {
 
               {/* --- TEXTO 2D encima del modelo: "Debilidad Muscular" --- */}
               <Text
-                position={[0, 12, 0]}
+                position={[0, 8, 0]}
                 fontSize={1}
                 color="blue"
                 anchorX="center"
