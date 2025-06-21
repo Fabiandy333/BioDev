@@ -40,12 +40,12 @@ const Symptoms = ({ title, description, imageLeft, imageRight }) => {
 
                 {/* --- TEXTO 2D encima del modelo --- */}
                 <Text
-                  position={[2, 0.5, 0]}           // ajusta según convenga
+                  position={[2, 0.5, 0]}           
                   fontSize={0.5}
                   color="blue"
                   anchorX="center"
                   anchorY="middle"
-                  font="/fonts/Beautiful_Valentine.otf" // coloca la fuente en public/fonts
+                  font="/fonts/Beautiful_Valentine.otf"
                 >
                   ¿Dolor?
                 </Text>

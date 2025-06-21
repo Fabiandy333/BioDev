@@ -11,7 +11,7 @@ const PreventionAlzheimer = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleBackClick = () => navigate("/enfermedades");
+  const handleBackClick = () => navigate("/enfermedades/alzheimer");
   const goToNext = () => navigate("/enfermedades/alzheimer/tratamiento");
   const handlePauseClick = () => setIsRotating(!isRotating);
 

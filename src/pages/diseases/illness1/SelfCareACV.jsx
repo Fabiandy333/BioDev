@@ -6,7 +6,7 @@ const SelfCareACV = ({ title, description, imageLeft, imageRight }) => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/enfermedades");
+    navigate("/enfermedades/acv/tratamiento");
   };
 
   return (

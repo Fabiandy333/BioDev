@@ -10,7 +10,7 @@ const TreatmentEsclerosis = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleBackClick = () => navigate("/enfermedades");
+  const handleBackClick = () => navigate("/enfermedades/esclerosis/sintomas");
   const goToNext = () => navigate("/enfermedades/esclerosis/autocuidado");
   const handlePauseClick = () => setIsRotating(!isRotating);
 

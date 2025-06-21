@@ -10,7 +10,7 @@ const TreatmentAlzheimer = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleBackClick = () => navigate("/enfermedades");
+  const handleBackClick = () => navigate("/enfermedades/alzheimer/sintomas");
   const goToNext = () => navigate("/enfermedades/alzheimer/autocuidado");
   const handlePauseClick = () => setIsRotating(!isRotating);
 
