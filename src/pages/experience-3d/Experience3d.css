@@ -174,3 +174,13 @@
 .exp3d-menu-back-btn:hover {
   opacity: 1;
 }
+
+.exp3d-model-title.hospital1 {
+  color: #2d3436; /* Gris */
+}
+.exp3d-model-title.hospital2 {
+  color: #ffffff; /* Blanco */
+}
+.exp3d-model-title.hospital3 {
+  color: #2d3436; /* Gris */
+}

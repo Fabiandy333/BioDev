@@ -50,6 +50,19 @@ const TreatmentAlzheimer = ({ title, description }) => {
               />
               <OrbitControls enableZoom={false} enablePan={false} />
 
+              {/* --- TEXTO 2D encima del modelo --- */}
+              <Text
+                position={[0, 2.5, 0]}
+                fontSize={0.25}
+                color="blue"
+                anchorX="center"
+                anchorY="middle"
+                font="/fonts/Beautiful_Valentine.otf"
+              >
+                
+                {'Tratamiento: acompañamiento \ny calidad de vida'}
+              </Text>
+
               <AlzheimerModel4
                 isRotating={isRotating}
                 setIsRotating={setIsRotating}

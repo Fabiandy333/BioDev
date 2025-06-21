@@ -71,7 +71,7 @@ const DiseasesRoutes = () => {
       <Route path="/acv/autocuidado" element={
         <SelfCareACV
           title="Autocuidado"
-          description="Rehabilitación continua, fisioterapia, seguimiento médico, una alimentación equilibrada y la participación en grupos de apoyo son fundamentales en la recuperación tras un ACV."
+          description="Tras un ACV es vital controlar factores de riesgo como hipertensión, glucemia y colesterol, cumplir estrictamente la medicación prescrita y apoyarse en recordatorios. La rehabilitación temprana con fisioterapia y terapia ocupacional, junto con ejercicio progresivo bajo supervisión y abordaje de disfagia, favorecen la recuperación de movilidad y autonomía. Adaptar el hogar para prevenir caídas, mantener una dieta saludable ajustada a las necesidades y prestar atención a la piel y funciones básicas completan el cuidado físico. "
     
         />
       } />
@@ -95,7 +95,7 @@ const DiseasesRoutes = () => {
       <Route path="/alzheimer/autocuidado" element={
         <SelfCareAlzheimer
           title="Autocuidado"
-          description="El autocuidado incluye crear rutinas simples, asegurar entornos familiares y seguros, promover la socialización, y mantener actividades que estimulen la memoria y la atención."
+          description="Tras el diagnóstico de Alzheimer, es esencial adaptar el hogar y las rutinas para mantener la seguridad y favorecer la autonomía en la medida de lo posible, por ejemplo etiquetando espacios, usando recordatorios y adaptando utensilios para prevenir caídas y confusiones. Estimular capacidades cognitivas con actividades significativas y sencillas según la etapa, como ejercicios de memoria, música o tareas de la vida diaria supervisadas, puede contribuir a retrasar el deterioro."
 
         />
       } />
@@ -117,7 +117,7 @@ const DiseasesRoutes = () => {
       <Route path="/esclerosis/autocuidado" element={
         <SelfCareEsclerosis
           title="Autocuidado"
-          description="El autocuidado incluye seguir las indicaciones médicas, realizar fisioterapia, mantener una dieta balanceada y adaptar el entorno para facilitar la movilidad y la seguridad."
+          description="Después del diagnóstico de esclerosis múltiple es fundamental adherirse al tratamiento de modificación de la enfermedad y gestionar síntomas como fatiga y sensibilidad al calor con descansos graduados y ambientes frescos; mantener actividad física adaptada (ejercicios de bajo impacto, estiramientos y rehabilitación) para preservar fuerza, movilidad y bienestar emocional; cuidar la nutrición con dieta equilibrada rica en frutas, verduras y proteínas magras, evitando procesados excesivos."
 
         />
       } />

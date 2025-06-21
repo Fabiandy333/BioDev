@@ -8,11 +8,12 @@ import EsclerosisModel3 from "../../pages/diseases/models-3d/EsclerosisModel3";
 import MigraineModel3 from "../../pages/diseases/models-3d/MigraineModel3";
 import Staging from "../staging/Staging";
 import Staging1 from "../staging/Staging1";
+import Staging2 from "../staging/Staging2";
 import './Experience3d.css';
 
 const Experience3d = () => {
   const [startExperience, setStartExperience] = useState(false);
-  const [scenario, setScenario] = useState(null); // null: aún no elegido, 'hospital1' o 'hospital2'
+  const [scenario, setScenario] = useState(null); // null: aún no elegido, 'hospital1', 'hospital2', 'hospital3'
   const [model, setModel] = useState('brain');
 
   // Volver al menú principal desde el menú de escenarios
@@ -94,6 +95,11 @@ const Experience3d = () => {
             <img src="/Hospital1.png" alt="Hospital 2" className="scenario-img" />
             <div className="scenario-title">Hospital 2</div>
           </div>
+          {/* Hospital 3 */}
+          <div className="scenario-card" onClick={() => handleScenarioSelect('hospital3')}>
+            <img src="/Hospital3.png" alt="Hospital 3" className="scenario-img" />
+            <div className="scenario-title">Hospital 3</div>
+          </div>
         </div>
       </div>
     );
@@ -119,8 +125,9 @@ const Experience3d = () => {
         </div>
       )}
 
+      {/* AQUÍ EL CAMBIO: clase dinámica por escenario */}
       {startExperience && scenario && (
-        <div className="exp3d-model-title">
+        <div className={`exp3d-model-title ${scenario}`}>
           <h2>{getModelTitle()}</h2>
         </div>
       )}
@@ -133,6 +140,7 @@ const Experience3d = () => {
           {/* Escenario depende de la selección */}
           {startExperience && scenario === 'hospital1' && <Staging />}
           {startExperience && scenario === 'hospital2' && <Staging1 />}
+          {startExperience && scenario === 'hospital3' && <Staging2 />}
 
           {(model === 'brain') && <Brain2 scale={2} />}
           {startExperience && scenario && model === 'acv' && <AcvModel3 />}
