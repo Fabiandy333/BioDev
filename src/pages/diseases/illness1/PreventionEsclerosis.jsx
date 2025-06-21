@@ -11,7 +11,7 @@ const PreventionEsclerosis = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleBackClick = () => navigate("/enfermedades");
+  const handleBackClick = () => navigate("/enfermedades/esclerosis");
   const goToNext = () => navigate("/enfermedades/esclerosis/tratamiento");
   const handlePauseClick = () => setIsRotating(!isRotating);
 

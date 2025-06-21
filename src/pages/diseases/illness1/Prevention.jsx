@@ -11,7 +11,7 @@ const Prevention = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleBackClick = () => navigate("/enfermedades");
+  const handleBackClick = () => navigate("/enfermedades/migrana");
   const goToNext = () => navigate("/enfermedades/migrana/tratamiento");
   const handlePauseClick = () => setIsRotating(!isRotating);
 

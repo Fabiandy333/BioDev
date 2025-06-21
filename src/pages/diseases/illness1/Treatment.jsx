@@ -10,7 +10,7 @@ const Treatment = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleBackClick = () => navigate("/enfermedades");
+  const handleBackClick = () => navigate("/enfermedades/migrana/sintomas");
   const goToNext = () => navigate("/enfermedades/migrana/autocuidado");
   const handlePauseClick = () => setIsRotating(!isRotating);
 

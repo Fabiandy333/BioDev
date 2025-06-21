@@ -47,7 +47,7 @@ const DiseasesRoutes = () => {
       <Route path="/migrana/autocuidado" element={
         <SelfCare
           title="Autocuidado"
-          description="El autocuidado en personas con migraña implica mantener hábitos saludables como dormir bien, evitar el estrés prolongado, hidratarse, registrar los factores que desencadenan las crisis y seguir las recomendaciones médicas."
+          description="Mantén horarios regulares de sueño y buena hidratación, identifica y evita tus desencadenantes (alimentación, estrés, falta de descanso) usando un breve diario, practica técnicas sencillas de relajación (respiración o meditación) y, al sentir el inicio de un ataque, busca un ambiente oscuro y tranquilo, aplica compresas según prefieras y sigue la medicación prescrita. Si ocurren más de 4 episodios al mes o empeora la intensidad, consulta al profesional."
           imageLeft="/autocuidado.png"
         />
       } />

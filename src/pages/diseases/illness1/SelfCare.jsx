@@ -5,7 +5,7 @@ const SelfCare = ({ title, description, imageLeft, imageRight }) => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/enfermedades");
+    navigate("/enfermedades/migrana/tratamiento");
   };
 
   return (
