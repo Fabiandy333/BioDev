@@ -10,9 +10,23 @@ const Treatment = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Para el input y el texto editable
+  const [customText, setCustomText] = useState(
+    "Controla el dolor,\npreviene recaídas\ny cuida tus hábitos"
+  );
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => navigate("/enfermedades/migrana/sintomas");
   const goToNext = () => navigate("/enfermedades/migrana/autocuidado");
-  const handlePauseClick = () => setIsRotating(!isRotating);
+  const handlePauseClick = () => setIsRotating((v) => !v);
+
+  // Cambiar el texto cuando el usuario presiona Enter
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -61,8 +75,29 @@ const Treatment = ({ title, description }) => {
                 lineHeight={1.2}
                 font="/fonts/Beautiful_Valentine.otf"
               >
-                {"Controla el dolor,\npreviene recaídas\ny cuida tus hábitos"}
+                {customText}
               </Text>
+
+              {/* === INPUT HTML 3D PARA CAMBIAR EL TEXTO === */}
+              <Html position={[-1, -2.3, 0]}>
+                <input
+                  type="text"
+                  placeholder="Cambia el texto"
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: "9px",
+                    border: "1px solid #bbb",
+                    fontSize: "1rem",
+                    outline: "none",
+                    boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                    width: "115px",
+                    marginBottom: "4px",
+                  }}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </Html>
 
               <MigraineModel4
                 isRotating={isRotating}

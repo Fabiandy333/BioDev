@@ -10,9 +10,21 @@ const SymptomsACV = () => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Estado para el texto editable
+  const [customText, setCustomText] = useState("ACV");
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => navigate("/enfermedades");
   const goToNext = () => navigate("/enfermedades/acv/sintomas");
-  const handlePauseClick = () => setIsRotating(!isRotating);
+  const handlePauseClick = () => setIsRotating((v) => !v);
+
+  // Cambia el texto cuando presiona Enter
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -52,7 +64,7 @@ const SymptomsACV = () => {
               {/* Controles */}
               <OrbitControls enableZoom={false} enablePan={false} />
 
-              {/* --- TEXTO 2D encima del modelo: "ACV" --- */}
+              {/* --- TEXTO 2D encima del modelo: editable --- */}
               <Text
                 position={[0, 2.5, 0]}
                 fontSize={0.5}
@@ -61,8 +73,29 @@ const SymptomsACV = () => {
                 anchorY="middle"
                 font="/fonts/Beautiful_Valentine.otf"
               >
-                ACV
+                {customText}
               </Text>
+
+              {/* Input HTML 3D para cambiar el texto */}
+              <Html position={[-0.6, -2.4, 0]}>
+                <input
+                  type="text"
+                  placeholder="Cambia el texto"
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: "9px",
+                    border: "1px solid #bbb",
+                    fontSize: "1rem",
+                    outline: "none",
+                    boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                    width: "115px",
+                    marginBottom: "4px",
+                  }}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </Html>
 
               {/* Modelo 3D */}
               <AcvModel

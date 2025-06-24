@@ -10,9 +10,21 @@ const Prevention = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Para el input y el texto editable
+  const [customText, setCustomText] = useState("Que sientes");
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => navigate("/enfermedades/migrana");
   const goToNext = () => navigate("/enfermedades/migrana/tratamiento");
   const handlePauseClick = () => setIsRotating(!isRotating);
+
+  // Cuando el usuario presiona Enter en el input
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -51,6 +63,7 @@ const Prevention = ({ title, description }) => {
 
               <OrbitControls enableZoom={false} enablePan={false} />
 
+              {/* === TEXTO 3D editable === */}
               <Center top position={[-0.01, -2.7, 0]}>
                 <Text3D
                   font="/fonts/helvetiker_regular_typeface.json"
@@ -63,11 +76,32 @@ const Prevention = ({ title, description }) => {
                   bevelOffset={0}
                   bevelSegments={4}
                 >
-                  Que sientes
+                  {customText}
                   <meshStandardMaterial attach="material" color="#ff6cec" />
                   <meshStandardMaterial attach="material-1" color="#3b0056" />
                 </Text3D>
               </Center>
+
+              {/* === INPUT HTML 3D PARA CAMBIAR EL TEXTO === */}
+              <Html position={[-0.8, -2, 0]}>
+                <input
+                  type="text"
+                  placeholder="Cambia el texto"
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: "9px",
+                    border: "1px solid #bbb",
+                    fontSize: "1rem",
+                    outline: "none",
+                    boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                    width: "115px",
+                    marginBottom: "4px",
+                  }}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </Html>
 
               <MigraineModel2
                 isRotating={isRotating}

@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
-
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Text, Html, Center, Text3D } from "@react-three/drei";
 import { useState } from "react";
@@ -11,11 +10,23 @@ const SelfCare = ({ title, description, imageLeft, imageRight }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Para el input y el texto editable del 3D extruido
+  const [customText, setCustomText] = useState("Medita");
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => {
     navigate("/enfermedades/migrana/tratamiento");
   };
 
   const handlePauseClick = () => setIsRotating((v) => !v);
+
+  // Cambiar el texto cuando el usuario presiona Enter
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -40,7 +51,7 @@ const SelfCare = ({ title, description, imageLeft, imageRight }) => {
               {/* Controles de órbita */}
               <OrbitControls enableZoom={false} enablePan={false} />
 
-              {/* TEXTO 3D EXTRUIDO - "Autocuidado" */}
+              {/* TEXTO 3D EXTRUIDO editable */}
               <Center top position={[-0.01, -2.7, 0]}>
                 <Text3D
                   font="/fonts/helvetiker_regular_typeface.json"
@@ -53,11 +64,32 @@ const SelfCare = ({ title, description, imageLeft, imageRight }) => {
                   bevelOffset={0}
                   bevelSegments={4}
                 >
-                  Medita
+                  {customText}
                   <meshStandardMaterial attach="material" color="#20b23a" />
                   <meshStandardMaterial attach="material-1" color="#1a3c1a" />
                 </Text3D>
               </Center>
+
+              {/* === INPUT HTML 3D PARA CAMBIAR EL TEXTO DEL EXTRUIDO === */}
+              <Html position={[-1, -2, 0]}>
+                <input
+                  type="text"
+                  placeholder="Cambia el texto"
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: "9px",
+                    border: "1px solid #bbb",
+                    fontSize: "1rem",
+                    outline: "none",
+                    boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                    width: "115px",
+                    marginBottom: "4px",
+                  }}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </Html>
 
               {/* Modelo 3D */}
               <MigraineModel5

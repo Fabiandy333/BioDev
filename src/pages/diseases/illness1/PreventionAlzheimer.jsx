@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Text, Text3D, Html, Center } from "@react-three/drei";
+import { OrbitControls, Text3D, Html, Center, Text } from "@react-three/drei";
 import { useState } from "react";
 import AlzheimerModel2 from "../../diseases/models-3d/AlzheimerModel2";
 
@@ -10,9 +10,21 @@ const PreventionAlzheimer = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Texto editable y estado del input
+  const [customText, setCustomText] = useState("Que sientes");
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => navigate("/enfermedades/alzheimer");
   const goToNext = () => navigate("/enfermedades/alzheimer/tratamiento");
   const handlePauseClick = () => setIsRotating(!isRotating);
+
+  // Cambiar texto extruido cuando se presiona Enter
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -84,7 +96,7 @@ const PreventionAlzheimer = ({ title, description }) => {
                     cursor: "pointer",
                     zIndex: 1001,
                   }}
-                  onClick={() => setShowInfo(v => !v)}
+                  onClick={() => setShowInfo((v) => !v)}
                 />
                 {showInfo && (
                   <div
@@ -138,6 +150,27 @@ const PreventionAlzheimer = ({ title, description }) => {
                 )}
               </Html>
 
+              {/* Input HTML 3D para cambiar el texto extruido */}
+              <Html position={[-1, -1.8, 0]}>
+                <input
+                  type="text"
+                  placeholder="Cambia el texto"
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: "9px",
+                    border: "1px solid #bbb",
+                    fontSize: "1rem",
+                    outline: "none",
+                    boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                    width: "125px",
+                    marginBottom: "4px",
+                  }}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </Html>
+
               {/* Sombra */}
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
@@ -148,7 +181,7 @@ const PreventionAlzheimer = ({ title, description }) => {
                 <shadowMaterial opacity={0.4} />
               </mesh>
 
-              {/* --- TEXTO 3D ABAJO: "¿Qué sientes?" --- */}
+              {/* --- TEXTO 3D ABAJO: editable --- */}
               <Center position={[0, -2.7, 0]}>
                 <Text3D
                   font="/fonts/helvetiker_regular_typeface.json"
@@ -161,7 +194,7 @@ const PreventionAlzheimer = ({ title, description }) => {
                   bevelOffset={0}
                   bevelSegments={4}
                 >
-                  Que sientes
+                  {customText}
                   <meshStandardMaterial attach="material" color="#ff6cec" />
                   <meshStandardMaterial attach="material-1" color="#3b0056" />
                 </Text3D>
