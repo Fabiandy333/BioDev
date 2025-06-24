@@ -1,4 +1,3 @@
-// src/components/SymptomsEsclerosis.jsx
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
 import { Canvas } from "@react-three/fiber";
@@ -13,7 +12,7 @@ const SymptomsEsclerosis = () => {
 
   const handleBackClick = () => navigate("/enfermedades");
   const goToNext = () => navigate("/enfermedades/esclerosis/sintomas");
-  const handlePauseClick = () => setIsRotating(!isRotating);
+  const handlePauseClick = () => setIsRotating((v) => !v);
 
   return (
     <div className="symptoms-container">
@@ -100,10 +99,10 @@ const SymptomsEsclerosis = () => {
                       borderRadius: "12px",
                       boxShadow: "0 6px 16px rgba(80,80,80,0.09)",
                       color: "#222",
-                      fontSize: "1.12rem",
-                      padding: "1.2rem 1.2rem",
-                      width: "320px",
-                      maxWidth: "360px",
+                      fontSize: "0.80rem",
+                      padding: "1.1rem 1rem",
+                      width: "295px",
+                      maxWidth: "330px",
                       textAlign: "left",
                       position: "absolute",
                       left: "0",
@@ -113,12 +112,14 @@ const SymptomsEsclerosis = () => {
                     }}
                   >
                     <b>Instrucciones:</b>
-                    <ul style={{ margin: "0.4em 0 0 1.2em", padding: 0 }}>
-                      <li>Haz clic en el modelo para pausar y reanudar la rotación.</li>
+                    <ul style={{ margin: "0.4em 0 0 1.1em", padding: 0 }}>
+                      <li><b>Haz clic</b> en el modelo para pausar o reanudar la rotación.</li>
+                      <li><b>Pasa el mouse</b> sobre el modelo para resaltarlo de azul.</li>
                       <li>Puedes rotar el modelo mientras esté en pausa.</li>
                       <li>Usa las flechas del teclado para rotarlo.</li>
                       <li>Pulsa la tecla <b>R</b> para restablecer la posición del modelo.</li>
                       <li>Haz <b>doble clic</b> sobre el modelo para hacer zoom en esa zona. Haz doble clic de nuevo para volver.</li>
+                      <li>Pulsa la <b>barra espaciadora</b> para aumentar o reducir el tamaño del modelo.</li>
                       <li>
                         <span style={{ color: "#2e54a9", fontWeight: 500 }}>
                           Haz clic en el icono <img src="/info.png" alt="info" width={18} style={{ verticalAlign: "middle" }} /> para cerrar.

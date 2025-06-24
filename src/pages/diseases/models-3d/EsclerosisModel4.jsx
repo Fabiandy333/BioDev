@@ -10,18 +10,9 @@ const EsclerosisModel4 = ({ isRotating, setIsRotating }) => {
   const [rotationY, setRotationY] = useState(0);
   const [rotationX, setRotationX] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [scale, setScale] = useState(4);
 
-  // Activar proyección de sombras en todas las mallas
-  useEffect(() => {
-    model.scene.traverse((child) => {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-      }
-    });
-  }, [model]);
-
-  // Animar rotación automática o manual
   useFrame(() => {
     if (!modelRef.current) return;
     if (isRotating) {
@@ -30,21 +21,21 @@ const EsclerosisModel4 = ({ isRotating, setIsRotating }) => {
       modelRef.current.rotation.y = rotationY;
       modelRef.current.rotation.x = rotationX;
     }
+    // Hover azul
+    modelRef.current.traverse?.((child) => {
+      if (child.isMesh) child.material.color.set(hovered ? "#2577ff" : "#ffffff");
+    });
   });
 
-  // Alternar pausa/reanudar al hacer clic
-  const handleClick = () => {
-    setIsRotating(!isRotating);
-  };
+  // Click: Pausa/Reanudar
+  const handleClick = () => setIsRotating((v) => !v);
 
-  // Doble click para zoom
+  // Doble click: Zoom in/out
   const handleDoubleClick = (event) => {
     if (!zoomed) {
       const { point } = event;
       const direction = point.clone().sub(camera.position).normalize();
-      camera.position.copy(
-        point.clone().add(direction.clone().multiplyScalar(-2.5)) // 2.5 unidades detrás del punto
-      );
+      camera.position.copy(point.clone().add(direction.clone().multiplyScalar(-2.5)));
       camera.updateProjectionMatrix();
       setZoomed(true);
     } else {
@@ -54,7 +45,11 @@ const EsclerosisModel4 = ({ isRotating, setIsRotating }) => {
     }
   };
 
-  // Control manual con flechas cuando está en pausa y tecla R siempre
+  // Hover azul
+  const handlePointerEnter = () => setHovered(true);
+  const handlePointerLeave = () => setHovered(false);
+
+  // Flechas, R, barra espaciadora
   const handleKeyDown = (e) => {
     if (e.key === 'r' || e.key === 'R') {
       setRotationY(0);
@@ -71,6 +66,9 @@ const EsclerosisModel4 = ({ isRotating, setIsRotating }) => {
       if (e.key === 'ArrowUp') setRotationX(rotationX - 0.15);
       else if (e.key === 'ArrowDown') setRotationX(rotationX + 0.15);
     }
+    if (e.key === " ") {
+      setScale((prev) => (prev === 4 ? 6 : 4));
+    }
   };
 
   useEffect(() => {
@@ -78,16 +76,27 @@ const EsclerosisModel4 = ({ isRotating, setIsRotating }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [rotationY, rotationX, isRotating]);
 
+  useEffect(() => {
+    model.scene.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+  }, [model]);
+
   return (
     <primitive
       object={model.scene}
       ref={modelRef}
-      scale={4}
+      scale={scale}
       position={[0, -0.5, 0]}
       castShadow
       receiveShadow
       onClick={handleClick}
       onDoubleClick={handleDoubleClick}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
     />
   );
 };

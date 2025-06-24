@@ -11,6 +11,10 @@ const AlzheimerModel = ({ isRotating, setIsRotating }) => {
   const [rotationX, setRotationX] = useState(0);
   const [zoomed, setZoomed] = useState(false);
 
+  // Eventos nuevos
+  const [hovered, setHovered] = useState(false);
+  const [scale, setScale] = useState(4);
+
   useEffect(() => {
     scene.traverse((child) => {
       if (child.isMesh) {
@@ -28,6 +32,10 @@ const AlzheimerModel = ({ isRotating, setIsRotating }) => {
         modelRef.current.rotation.y = rotationY;
         modelRef.current.rotation.x = rotationX;
       }
+      // Evento de resaltado (hover)
+      modelRef.current.traverse((child) => {
+        if (child.isMesh) child.material.color.set(hovered ? "#2577ff" : "#ffffff");
+      });
     }
   });
 
@@ -46,6 +54,10 @@ const AlzheimerModel = ({ isRotating, setIsRotating }) => {
     }
   };
 
+  // Highlight mouse
+  const handlePointerEnter = () => setHovered(true);
+  const handlePointerLeave = () => setHovered(false);
+
   // Teclado
   const handleKeyDown = (e) => {
     if (e.key === "r" || e.key === "R") {
@@ -63,6 +75,9 @@ const AlzheimerModel = ({ isRotating, setIsRotating }) => {
       if (e.key === 'ArrowUp') setRotationX(rotationX - 0.15);
       else if (e.key === 'ArrowDown') setRotationX(rotationX + 0.15);
     }
+    if (e.key === " ") { // barra espaciadora
+      setScale((prev) => (prev === 4 ? 5.5 : 4));
+    }
   };
 
   useEffect(() => {
@@ -74,12 +89,14 @@ const AlzheimerModel = ({ isRotating, setIsRotating }) => {
     <primitive
       object={scene}
       ref={modelRef}
-      scale={4}
+      scale={scale}
       position={[0, -0.5, 0]}
       castShadow
       receiveShadow
       onClick={() => setIsRotating(!isRotating)}
       onDoubleClick={handleDoubleClick}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
     />
   );
 };

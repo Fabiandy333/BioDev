@@ -12,6 +12,10 @@ const AcvModel4 = ({ isRotating, setIsRotating }) => {
   const [rotationX, setRotationX] = useState(0);
   const [zoomed, setZoomed] = useState(false);
 
+  // Highlight & escala (eventos extra)
+  const [hovered, setHovered] = useState(false);
+  const [scale, setScale] = useState(4);
+
   // Habilitar sombras en todas las mallas del modelo
   useEffect(() => {
     scene.traverse((child) => {
@@ -22,7 +26,7 @@ const AcvModel4 = ({ isRotating, setIsRotating }) => {
     });
   }, [scene]);
 
-  // Animación de rotación automática o manual
+  // Animación de rotación automática o manual y highlight
   useFrame(() => {
     if (!modelRef.current) return;
     if (isRotating) {
@@ -31,6 +35,10 @@ const AcvModel4 = ({ isRotating, setIsRotating }) => {
       modelRef.current.rotation.y = rotationY;
       modelRef.current.rotation.x = rotationX;
     }
+    // Resaltado al pasar mouse
+    modelRef.current.traverse((child) => {
+      if (child.isMesh) child.material.color.set(hovered ? "#2577ff" : "#ffffff");
+    });
   });
 
   // Zoom con doble clic
@@ -48,7 +56,11 @@ const AcvModel4 = ({ isRotating, setIsRotating }) => {
     }
   };
 
-  // Tecla R y flechas
+  // Highlight mouse
+  const handlePointerEnter = () => setHovered(true);
+  const handlePointerLeave = () => setHovered(false);
+
+  // Tecla R, flechas y barra espaciadora
   const handleKeyDown = (e) => {
     if (e.key === "r" || e.key === "R") {
       setRotationY(0);
@@ -65,6 +77,9 @@ const AcvModel4 = ({ isRotating, setIsRotating }) => {
       if (e.key === 'ArrowUp') setRotationX(rotationX - 0.15);
       else if (e.key === 'ArrowDown') setRotationX(rotationX + 0.15);
     }
+    if (e.key === " ") { // barra espaciadora
+      setScale((prev) => (prev === 4 ? 5.5 : 4));
+    }
   };
 
   useEffect(() => {
@@ -76,12 +91,14 @@ const AcvModel4 = ({ isRotating, setIsRotating }) => {
     <primitive
       object={scene}
       ref={modelRef}
-      scale={4}
+      scale={scale}
       position={[0, -0.5, 0]}
       castShadow
       receiveShadow
       onClick={() => setIsRotating(!isRotating)}
       onDoubleClick={handleDoubleClick}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
     />
   );
 };

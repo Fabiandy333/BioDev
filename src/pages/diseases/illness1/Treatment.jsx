@@ -49,10 +49,10 @@ const Treatment = ({ title, description }) => {
                 intensity={0.1}
               />
               <OrbitControls enableZoom={false} enablePan={false} />
-              
+
               {/* ======= TEXTO 2D SOBRE EL MODELO ======= */}
               <Text
-                position={[2, 1.5, 0]} /* Arriba del modelo, ajústalo si lo quieres más alto */
+                position={[2, 1.5, 0]}
                 fontSize={0.22}
                 color="blue"
                 anchorX="center"
@@ -83,6 +83,7 @@ const Treatment = ({ title, description }) => {
               >
                 {isRotating ? "Pausa" : "Reanudar"}
               </Text>
+
               {/* Info icon 3D HTML a la izquierda, toggle con click */}
               <Html position={[-2.2, 1.7, 0]}>
                 <img
@@ -105,10 +106,10 @@ const Treatment = ({ title, description }) => {
                       borderRadius: "12px",
                       boxShadow: "0 6px 16px rgba(80,80,80,0.09)",
                       color: "#222",
-                      fontSize: "1rem",
-                      padding: "1.2rem 1.2rem",
-                      width: "290px",
-                      maxWidth: "340px",
+                      fontSize: "0.80rem",
+                      padding: "1.1rem 1rem",
+                      width: "265px",
+                      maxWidth: "300px",
                       textAlign: "left",
                       position: "absolute",
                       left: "0",
@@ -118,14 +119,28 @@ const Treatment = ({ title, description }) => {
                     }}
                   >
                     <b>Instrucciones:</b>
-                    <ul style={{ margin: "0.4em 0 0 1.2em", padding: 0 }}>
-                      <li>Haz clic en el modelo para pausar y reanudar la rotación.</li>
+                    <ul style={{ margin: "0.4em 0 0 1.1em", padding: 0 }}>
+                      <li>
+                        <b>Haz clic</b> en el modelo para pausar o reanudar la rotación.
+                      </li>
+                      <li>
+                        <b>Pasa el mouse</b> sobre el modelo para resaltarlo de color azul.
+                      </li>
                       <li>Puedes rotar el modelo mientras esté en pausa.</li>
                       <li>Usa las flechas del teclado para rotarlo.</li>
-                      <li>Pulsa la tecla <b>R</b> para restablecer la posición del modelo.</li>
-                      <li>Haz <b>doble clic</b> sobre el modelo para hacer zoom en esa zona. Haz doble clic de nuevo para volver.</li>
                       <li>
-                        <span style={{ color: "#2e54a9", fontWeight: 500 }}>Haz clic en el icono <img src="/info.png" alt="info" width={18} style={{ verticalAlign: "middle" }} /> para cerrar.</span>
+                        Pulsa la tecla <b>R</b> para restablecer la posición del modelo.
+                      </li>
+                      <li>
+                        Haz <b>doble clic</b> sobre el modelo para hacer zoom en esa zona. Haz doble clic de nuevo para volver.
+                      </li>
+                      <li>
+                        Pulsa la <b>barra espaciadora</b> para aumentar o reducir el tamaño del modelo.
+                      </li>
+                      <li>
+                        <span style={{ color: "#2e54a9", fontWeight: 500 }}>
+                          Haz clic en el icono <img src="/info.png" alt="info" width={18} style={{ verticalAlign: "middle" }} /> para cerrar.
+                        </span>
                       </li>
                     </ul>
                   </div>

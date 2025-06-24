@@ -11,6 +11,9 @@ const AcvModel5 = ({ isRotating, setIsRotating }) => {
   const [rotationY, setRotationY] = useState(4.7);
   const [rotationX, setRotationX] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+  // Highlight & escala (eventos extra)
+  const [hovered, setHovered] = useState(false);
+  const [scale, setScale] = useState(4);
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -29,6 +32,10 @@ const AcvModel5 = ({ isRotating, setIsRotating }) => {
       modelRef.current.rotation.y = rotationY;
       modelRef.current.rotation.x = rotationX;
     }
+    // Resaltado al pasar mouse
+    modelRef.current.traverse((child) => {
+      if (child.isMesh) child.material.color.set(hovered ? "#2577ff" : "#ffffff");
+    });
   });
 
   // Doble clic zoom
@@ -46,6 +53,10 @@ const AcvModel5 = ({ isRotating, setIsRotating }) => {
     }
   };
 
+  // Highlight mouse
+  const handlePointerEnter = () => setHovered(true);
+  const handlePointerLeave = () => setHovered(false);
+
   // Teclado igual que ejemplos
   const handleKeyDown = (e) => {
     if (e.key === "r" || e.key === "R") {
@@ -62,6 +73,9 @@ const AcvModel5 = ({ isRotating, setIsRotating }) => {
       else if (e.key === 'ArrowRight') setRotationY(rotationY + 0.15);
       if (e.key === 'ArrowUp') setRotationX(rotationX - 0.15);
       else if (e.key === 'ArrowDown') setRotationX(rotationX + 0.15);
+    }
+    if (e.key === " ") { // barra espaciadora
+      setScale((prev) => (prev === 4 ? 5.5 : 4));
     }
   };
 
@@ -83,12 +97,14 @@ const AcvModel5 = ({ isRotating, setIsRotating }) => {
       <primitive
         object={scene}
         ref={modelRef}
-        scale={4}
+        scale={scale}
         position={[0, -0.5, 0]}
         castShadow
         receiveShadow
         onClick={() => setIsRotating((rot) => !rot)}
         onDoubleClick={handleDoubleClick}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
       />
     </>
   );

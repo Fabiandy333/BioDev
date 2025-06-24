@@ -12,7 +12,7 @@ const TreatmentEsclerosis = ({ title, description }) => {
 
   const handleBackClick = () => navigate("/enfermedades/esclerosis/sintomas");
   const goToNext = () => navigate("/enfermedades/esclerosis/autocuidado");
-  const handlePauseClick = () => setIsRotating(!isRotating);
+  const handlePauseClick = () => setIsRotating((v) => !v);
 
   return (
     <div className="symptoms-container">
@@ -50,8 +50,6 @@ const TreatmentEsclerosis = ({ title, description }) => {
                 groundColor="#cccccc"
                 intensity={0.1}
               />
-
-              {/* Camera Controls */}
               <OrbitControls enableZoom={false} enablePan={false} />
 
               {/* --- TEXTO 2D ENCIMA DEL MODELO: "¿Tratamiento?" --- */}
@@ -66,13 +64,13 @@ const TreatmentEsclerosis = ({ title, description }) => {
                 Terapia
               </Text>
 
-              {/* Interactive 3D Model */}
+              {/* Modelo 3D interactivo */}
               <EsclerosisModel4
                 isRotating={isRotating}
                 setIsRotating={setIsRotating}
               />
 
-              {/* 3D Pause/Resume Button */}
+              {/* Botón 3D Pausa/Reanudar */}
               <mesh position={[0, 2.1, 0]} onClick={handlePauseClick}>
                 <planeGeometry args={[1.5, 0.5]} />
                 <meshBasicMaterial color="blue" />
@@ -109,7 +107,7 @@ const TreatmentEsclerosis = ({ title, description }) => {
                       borderRadius: "12px",
                       boxShadow: "0 6px 16px rgba(80,80,80,0.09)",
                       color: "#222",
-                      fontSize: "1.1rem",
+                      fontSize: "0.80rem",
                       padding: "1.3rem 1.1rem",
                       width: "295px",
                       maxWidth: "330px",
@@ -123,13 +121,13 @@ const TreatmentEsclerosis = ({ title, description }) => {
                   >
                     <b>Instrucciones:</b>
                     <ul style={{ margin: "0.4em 0 0 1.2em", padding: 0 }}>
-                      <li>Haz clic en el modelo para pausar y reanudar la rotación.</li>
+                      <li><b>Haz clic</b> en el modelo para pausar o reanudar la rotación.</li>
+                      <li><b>Pasa el mouse</b> sobre el modelo para resaltarlo de azul.</li>
                       <li>Puedes rotar el modelo mientras esté en pausa.</li>
                       <li>Usa las flechas del teclado para rotarlo.</li>
                       <li>Pulsa la tecla <b>R</b> para restablecer la posición del modelo.</li>
-                      <li>
-                        Haz <b>doble clic</b> sobre el modelo para hacer zoom en esa zona. Haz doble clic de nuevo para volver.
-                      </li>
+                      <li>Haz <b>doble clic</b> sobre el modelo para hacer zoom en esa zona. Haz doble clic de nuevo para volver.</li>
+                      <li>Pulsa la <b>barra espaciadora</b> para aumentar o reducir el tamaño del modelo.</li>
                       <li>
                         <span style={{ color: "#2e54a9", fontWeight: 500 }}>
                           Haz clic en el icono <img src="/info.png" alt="info" width={18} style={{ verticalAlign: "middle" }} /> para cerrar.

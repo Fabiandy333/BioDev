@@ -60,7 +60,7 @@ const SelfCareEsclerosis = ({ title, description, imageLeft, imageRight }) => {
                 {isRotating ? "Pausa" : "Reanudar"}
               </Text>
 
-              {/* Icono de información */}
+              {/* Icono de información y tarjeta instrucciones */}
               <Html position={[-2.2, 1.7, 0]}>
                 <img
                   src="/info.png"
@@ -82,7 +82,7 @@ const SelfCareEsclerosis = ({ title, description, imageLeft, imageRight }) => {
                       borderRadius: "12px",
                       boxShadow: "0 6px 16px rgba(80,80,80,0.09)",
                       color: "#222",
-                      fontSize: "1rem",
+                      fontSize: "0.80rem",
                       padding: "1.2rem",
                       width: "290px",
                       maxWidth: "340px",
@@ -97,7 +97,10 @@ const SelfCareEsclerosis = ({ title, description, imageLeft, imageRight }) => {
                     <b>Instrucciones:</b>
                     <ul style={{ margin: "0.4em 0 0 1.2em", padding: 0 }}>
                       <li>
-                        Haz clic en el modelo para pausar y reanudar la rotación.
+                        <b>Haz clic</b> en el modelo para pausar o reanudar la rotación.
+                      </li>
+                      <li>
+                        <b>Pasa el mouse</b> sobre el modelo para resaltarlo de azul.
                       </li>
                       <li>Puedes rotar el modelo mientras esté en pausa.</li>
                       <li>Usa las flechas del teclado para rotarlo.</li>
@@ -108,6 +111,9 @@ const SelfCareEsclerosis = ({ title, description, imageLeft, imageRight }) => {
                       <li>
                         Haz <b>doble clic</b> sobre el modelo para hacer zoom en
                         esa zona. Haz doble clic de nuevo para volver.
+                      </li>
+                      <li>
+                        Pulsa la <b>barra espaciadora</b> para aumentar o reducir el tamaño del modelo.
                       </li>
                       <li>
                         <span style={{ color: "#2e54a9", fontWeight: 500 }}>

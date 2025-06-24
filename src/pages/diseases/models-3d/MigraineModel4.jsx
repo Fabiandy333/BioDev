@@ -10,6 +10,8 @@ const MigraineModel4 = ({ isRotating, setIsRotating }) => {
   const [rotationY, setRotationY] = useState(0);
   const [rotationX, setRotationX] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [scale, setScale] = useState(4);
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -27,6 +29,16 @@ const MigraineModel4 = ({ isRotating, setIsRotating }) => {
       } else {
         modelRef.current.rotation.y = rotationY;
         modelRef.current.rotation.x = rotationX;
+      }
+      // Efecto hover
+      if (hovered) {
+        modelRef.current.traverse((child) => {
+          if (child.isMesh) child.material.color.set("#2577ff");
+        });
+      } else {
+        modelRef.current.traverse((child) => {
+          if (child.isMesh) child.material.color.set("#ffffff");
+        });
       }
     }
   });
@@ -46,6 +58,10 @@ const MigraineModel4 = ({ isRotating, setIsRotating }) => {
     }
   };
 
+  // Mouse hover
+  const handlePointerEnter = () => setHovered(true);
+  const handlePointerLeave = () => setHovered(false);
+
   // Teclado
   const handleKeyDown = (e) => {
     if (e.key === "r" || e.key === "R") {
@@ -62,6 +78,9 @@ const MigraineModel4 = ({ isRotating, setIsRotating }) => {
       else if (e.key === 'ArrowRight') setRotationY(rotationY + 0.15);
       if (e.key === 'ArrowUp') setRotationX(rotationX - 0.15);
       else if (e.key === 'ArrowDown') setRotationX(rotationX + 0.15);
+    }
+    if (e.key === " ") { // Barra espaciadora
+      setScale((prev) => (prev === 4 ? 5.5 : 4));
     }
   };
 
@@ -82,12 +101,14 @@ const MigraineModel4 = ({ isRotating, setIsRotating }) => {
       <primitive
         object={scene}
         ref={modelRef}
-        scale={4}
+        scale={scale}
         position={[0, -0.5, 0]}
         castShadow
         receiveShadow
         onClick={() => setIsRotating(!isRotating)}
         onDoubleClick={handleDoubleClick}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
       />
     </>
   );

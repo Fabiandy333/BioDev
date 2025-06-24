@@ -1,8 +1,7 @@
-// src/components/Prevention.jsx
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Text, Text3D, Html, Center } from "@react-three/drei";
+import { OrbitControls, Text3D, Html, Center, Text } from "@react-three/drei";
 import { useState } from "react";
 import MigraineModel2 from "../../diseases/models-3d/MigraineModel2";
 
@@ -50,10 +49,8 @@ const Prevention = ({ title, description }) => {
                 intensity={0.1}
               />
 
-              {/* Controles de órbita */}
               <OrbitControls enableZoom={false} enablePan={false} />
 
-              {/* ——— TEXTO 3D EXTRUIDO: "SINTOMAS" ——— */}
               <Center top position={[-0.01, -2.7, 0]}>
                 <Text3D
                   font="/fonts/helvetiker_regular_typeface.json"
@@ -67,20 +64,16 @@ const Prevention = ({ title, description }) => {
                   bevelSegments={4}
                 >
                   Que sientes
-                  {/* material frontal */}
                   <meshStandardMaterial attach="material" color="#ff6cec" />
-                  {/* material lateral (contorno) */}
                   <meshStandardMaterial attach="material-1" color="#3b0056" />
                 </Text3D>
               </Center>
 
-              {/* Modelo 3D */}
               <MigraineModel2
                 isRotating={isRotating}
                 setIsRotating={setIsRotating}
               />
 
-              {/* Botón 3D de pausa/reanudar */}
               <mesh position={[0, 2, 0]} onClick={handlePauseClick}>
                 <planeGeometry args={[1.5, 0.5]} />
                 <meshBasicMaterial color="blue" />
@@ -95,7 +88,6 @@ const Prevention = ({ title, description }) => {
                 {isRotating ? "Pausa" : "Reanudar"}
               </Text>
 
-              {/* Icono de información */}
               <Html position={[-2.2, 1.7, 0]}>
                 <img
                   src="/info.png"
@@ -117,10 +109,10 @@ const Prevention = ({ title, description }) => {
                       borderRadius: "12px",
                       boxShadow: "0 6px 16px rgba(80,80,80,0.09)",
                       color: "#222",
-                      fontSize: "1rem",
-                      padding: "1.2rem 1.2rem",
-                      width: "290px",
-                      maxWidth: "340px",
+                      fontSize: "0.80rem",
+                      padding: "1.1rem 1rem",
+                      width: "265px",
+                      maxWidth: "300px",
                       textAlign: "left",
                       position: "absolute",
                       left: "0",
@@ -130,12 +122,24 @@ const Prevention = ({ title, description }) => {
                     }}
                   >
                     <b>Instrucciones:</b>
-                    <ul style={{ margin: "0.4em 0 0 1.2em", padding: 0 }}>
-                      <li>Haz clic en el modelo para pausar y reanudar la rotación.</li>
+                    <ul style={{ margin: "0.4em 0 0 1.1em", padding: 0 }}>
+                      <li>
+                        <b>Haz clic</b> en el modelo para pausar o reanudar la rotación.
+                      </li>
+                      <li>
+                        <b>Pasa el mouse</b> sobre el modelo para resaltarlo de color azul.
+                      </li>
                       <li>Puedes rotar el modelo mientras esté en pausa.</li>
                       <li>Usa las flechas del teclado para rotarlo.</li>
-                      <li>Pulsa la tecla <b>R</b> para restablecer la posición del modelo.</li>
-                      <li>Haz <b>doble clic</b> sobre el modelo para hacer zoom en esa zona. Haz doble clic de nuevo para volver.</li>
+                      <li>
+                        Pulsa la tecla <b>R</b> para restablecer la posición del modelo.
+                      </li>
+                      <li>
+                        Haz <b>doble clic</b> sobre el modelo para hacer zoom en esa zona. Haz doble clic de nuevo para volver.
+                      </li>
+                      <li>
+                        Pulsa la <b>barra espaciadora</b> para aumentar o reducir el tamaño del modelo.
+                      </li>
                       <li>
                         <span style={{ color: "#2e54a9", fontWeight: 500 }}>
                           Haz clic en el icono <img src="/info.png" alt="info" width={18} style={{ verticalAlign: "middle" }} /> para cerrar.
@@ -146,7 +150,6 @@ const Prevention = ({ title, description }) => {
                 )}
               </Html>
 
-              {/* Sombra */}
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -5, 0]}
