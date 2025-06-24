@@ -10,19 +10,24 @@ const EsclerosisModel = ({ isRotating, setIsRotating }) => {
   const [rotationY, setRotationY] = useState(0);
   const [rotationX, setRotationX] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [scale, setScale] = useState(20);
 
   useFrame(() => {
-    if (modelRef.current) {
-      if (isRotating) {
-        modelRef.current.rotation.y += 0.005;
-      } else {
-        modelRef.current.rotation.y = rotationY;
-        modelRef.current.rotation.x = rotationX;
-      }
+    if (!modelRef.current) return;
+    if (isRotating) {
+      modelRef.current.rotation.y += 0.005;
+    } else {
+      modelRef.current.rotation.y = rotationY;
+      modelRef.current.rotation.x = rotationX;
     }
+    // Resalta azul si hovered
+    modelRef.current.traverse((child) => {
+      if (child.isMesh) child.material.color.set(hovered ? "#2577ff" : "#ffffff");
+    });
   });
 
-  // Doble clic para zoom
+  // Zoom con doble clic
   const handleDoubleClick = (event) => {
     if (!zoomed) {
       const { point } = event;
@@ -38,9 +43,13 @@ const EsclerosisModel = ({ isRotating, setIsRotating }) => {
   };
 
   // Pausar/reanudar con click
-  const handleClick = () => setIsRotating(!isRotating);
+  const handleClick = () => setIsRotating((v) => !v);
 
-  // Control flechas + tecla R
+  // Hover azul
+  const handlePointerEnter = () => setHovered(true);
+  const handlePointerLeave = () => setHovered(false);
+
+  // Control flechas + tecla R + barra espaciadora para escalar
   const handleKeyDown = (e) => {
     if (e.key === "r" || e.key === "R") {
       setRotationY(0);
@@ -56,6 +65,9 @@ const EsclerosisModel = ({ isRotating, setIsRotating }) => {
       else if (e.key === "ArrowRight") setRotationY(rotationY + 0.15);
       if (e.key === "ArrowUp") setRotationX(rotationX - 0.15);
       else if (e.key === "ArrowDown") setRotationX(rotationX + 0.15);
+    }
+    if (e.key === " ") {
+      setScale((prev) => (prev === 20 ? 27 : 20));
     }
   };
 
@@ -83,16 +95,17 @@ const EsclerosisModel = ({ isRotating, setIsRotating }) => {
         shadow-mapSize-width={1024}
         shadow-mapSize-height={1024}
       />
-
       <primitive
         object={model.scene}
         ref={modelRef}
-        scale={20}
+        scale={scale}
         position={[0, -0.5, 0]}
         receiveShadow={true}
         castShadow={true}
         onClick={handleClick}
         onDoubleClick={handleDoubleClick}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
       />
     </>
   );

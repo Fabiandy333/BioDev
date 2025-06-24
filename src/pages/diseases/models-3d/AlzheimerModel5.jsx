@@ -7,10 +7,14 @@ const AlzheimerModel5 = ({ isRotating, setIsRotating }) => {
   const { scene } = useGLTF('/models-3d/Alzheimer3.glb');
   const { camera } = useThree();
 
-  // Rotación inicial a 4.7 Y como en tus ejemplos
   const [rotationY, setRotationY] = useState(4.7);
   const [rotationX, setRotationX] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+
+  // Resaltado al pasar el mouse
+  const [hovered, setHovered] = useState(false);
+  // Escala con barra espaciadora
+  const [scale, setScale] = useState(4);
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -29,6 +33,10 @@ const AlzheimerModel5 = ({ isRotating, setIsRotating }) => {
       modelRef.current.rotation.y = rotationY;
       modelRef.current.rotation.x = rotationX;
     }
+    // Resalta azul si hovered
+    modelRef.current.traverse((child) => {
+      if (child.isMesh) child.material.color.set(hovered ? "#2577ff" : "#ffffff");
+    });
   });
 
   // Zoom con doble click
@@ -46,7 +54,11 @@ const AlzheimerModel5 = ({ isRotating, setIsRotating }) => {
     }
   };
 
-  // Control de flechas + tecla R
+  // Resalta azul
+  const handlePointerEnter = () => setHovered(true);
+  const handlePointerLeave = () => setHovered(false);
+
+  // Control teclado
   const handleKeyDown = (e) => {
     if (e.key === 'r' || e.key === 'R') {
       setRotationY(4.7);
@@ -62,6 +74,9 @@ const AlzheimerModel5 = ({ isRotating, setIsRotating }) => {
       else if (e.key === 'ArrowRight') setRotationY(rotationY + 0.15);
       if (e.key === 'ArrowUp') setRotationX(rotationX - 0.15);
       else if (e.key === 'ArrowDown') setRotationX(rotationX + 0.15);
+    }
+    if (e.key === " ") {
+      setScale((prev) => (prev === 4 ? 5.5 : 4));
     }
   };
 
@@ -83,12 +98,14 @@ const AlzheimerModel5 = ({ isRotating, setIsRotating }) => {
       <primitive
         object={scene}
         ref={modelRef}
-        scale={4}
+        scale={scale}
         position={[0, -0.5, 0]}
         castShadow
         receiveShadow
         onClick={() => setIsRotating((rot) => !rot)}
         onDoubleClick={handleDoubleClick}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
       />
     </>
   );

@@ -4,21 +4,27 @@ import React, { useRef, useState, useEffect } from 'react';
 
 const MigraineModel = ({ isRotating, setIsRotating }) => {
   const modelRef = useRef();
-  const { camera } = useThree(); // ← acceso a la cámara
+  const { camera } = useThree();
   const model = useGLTF('/models-3d/migraine2.glb');
 
   const [rotationY, setRotationY] = useState(0);
   const [rotationX, setRotationX] = useState(0);
-  const [zoomed, setZoomed] = useState(false); // ← estado de zoom
+  const [zoomed, setZoomed] = useState(false);
+
+  // NUEVO: hover y escala (para eventos extra)
+  const [hovered, setHovered] = useState(false);
+  const [scaled, setScaled] = useState(false);
 
   useEffect(() => {
     model.scene.traverse((child) => {
       if (child.isMesh) {
         child.castShadow = true;
         child.receiveShadow = true;
+        // Cambia color al pasar mouse (hover)
+        child.material.color.set(hovered ? '#00BFFF' : '#ffffff');
       }
     });
-  }, [model]);
+  }, [model, hovered]);
 
   useFrame(() => {
     if (modelRef.current) {
@@ -31,29 +37,22 @@ const MigraineModel = ({ isRotating, setIsRotating }) => {
     }
   });
 
-  // Zoom con doble click sobre el modelo
+  // Doble clic para zoom
   const handleDoubleClick = (event) => {
-    // Solo haz zoom si no está ya en zoom
     if (!zoomed) {
-      // El punto exacto 3D donde se hizo doble click
       const { point } = event;
-      // Calcula dirección desde la cámara a ese punto
       const direction = point.clone().sub(camera.position).normalize();
-      // Mueve la cámara hacia el punto (pero no exactamente encima, solo más cerca)
-      camera.position.copy(
-        point.clone().add(direction.clone().multiplyScalar(-2)) // 2 unidades detrás del punto
-      );
+      camera.position.copy(point.clone().add(direction.clone().multiplyScalar(-2)));
       camera.updateProjectionMatrix();
       setZoomed(true);
     } else {
-      // Si ya está en zoom, regresa la cámara a la posición original
-      camera.position.set(0, 0, 6); // Cambia esto si tu cámara está en otro sitio
+      camera.position.set(0, 0, 6);
       camera.updateProjectionMatrix();
       setZoomed(false);
     }
   };
 
-  // Teclado igual que antes
+  // EVENTOS DE TECLADO
   const handleKeyDown = (e) => {
     if (e.key === "r" || e.key === "R") {
       setRotationY(4.7);
@@ -69,6 +68,10 @@ const MigraineModel = ({ isRotating, setIsRotating }) => {
       else if (e.key === 'ArrowRight') setRotationY(rotationY + 0.15);
       if (e.key === 'ArrowUp') setRotationX(rotationX - 0.15);
       else if (e.key === 'ArrowDown') setRotationX(rotationX + 0.15);
+    }
+    // NUEVO: Espacio para cambiar el tamaño del modelo
+    if (e.code === "Space") {
+      setScaled((prev) => !prev);
     }
   };
 
@@ -86,16 +89,18 @@ const MigraineModel = ({ isRotating, setIsRotating }) => {
       <pointLight position={[0, 5, 0]} intensity={0.5} castShadow />
       <hemisphereLight skyColor="#ffffff" groundColor="#cccccc" intensity={0.1} />
 
-      {/* Modelo 3D con onDoubleClick */}
+      {/* Modelo 3D con TODOS los eventos */}
       <primitive
         object={model.scene}
         ref={modelRef}
-        scale={4}
+        scale={scaled ? 6 : 4}
         position={[0, -0.5, 0]}
         castShadow
         receiveShadow
-        onClick={() => setIsRotating(!isRotating)}
-        onDoubleClick={handleDoubleClick}
+        onClick={() => setIsRotating(!isRotating)} // Pausa/rotar
+        onDoubleClick={handleDoubleClick}           // Zoom
+        onPointerEnter={() => setHovered(true)}     // Resalta al pasar mouse
+        onPointerLeave={() => setHovered(false)}    // Vuelve a color normal
       />
     </>
   );
