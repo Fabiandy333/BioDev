@@ -10,9 +10,21 @@ const SymptomsEsclerosis = () => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Texto editable y value del input
+  const [customText, setCustomText] = useState("Debilidad Muscular");
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => navigate("/enfermedades");
   const goToNext = () => navigate("/enfermedades/esclerosis/sintomas");
   const handlePauseClick = () => setIsRotating((v) => !v);
+
+  // Actualizar texto 3D cuando el usuario presiona Enter
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -45,7 +57,7 @@ const SymptomsEsclerosis = () => {
               />
               <OrbitControls enableZoom={false} enablePan={false} />
 
-              {/* --- TEXTO 2D encima del modelo: "Debilidad Muscular" --- */}
+              {/* --- TEXTO 2D editable encima del modelo --- */}
               <Text
                 position={[0, 8, 0]}
                 fontSize={1}
@@ -54,8 +66,29 @@ const SymptomsEsclerosis = () => {
                 anchorY="middle"
                 font="/fonts/Beautiful_Valentine.otf"
               >
-                Debilidad Muscular
+                {customText}
               </Text>
+
+              {/* Input HTML 3D para cambiar el texto */}
+              <Html position={[-3, -5, 0]}>
+                <input
+                  type="text"
+                  placeholder="Cambia el texto"
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: "9px",
+                    border: "1px solid #bbb",
+                    fontSize: "1rem",
+                    outline: "none",
+                    boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                    width: "115px",
+                    marginBottom: "4px",
+                  }}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </Html>
 
               <EsclerosisModel
                 isRotating={isRotating}

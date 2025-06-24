@@ -10,9 +10,21 @@ const PreventionEsclerosis = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Estado para texto editable abajo y input
+  const [customText, setCustomText] = useState("Que sientes");
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => navigate("/enfermedades/esclerosis");
   const goToNext = () => navigate("/enfermedades/esclerosis/tratamiento");
   const handlePauseClick = () => setIsRotating((v) => !v);
+
+  // Cambia el texto extruido cuando el usuario presiona Enter
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -60,6 +72,7 @@ const PreventionEsclerosis = ({ title, description }) => {
                 setIsRotating={setIsRotating}
               />
 
+              {/* Sombra */}
               <mesh
                 rotation={[-Math.PI / 2, 0, 0]}
                 position={[0, -5, 0]}
@@ -137,7 +150,28 @@ const PreventionEsclerosis = ({ title, description }) => {
                 )}
               </Html>
 
-              {/* --- TEXTO 3D EXTRUIDO ABAJO: "¿Qué sientes?" --- */}
+              {/* Input HTML para cambiar el texto extruido abajo */}
+              <Html position={[-2, -4, 0]}>
+                <input
+                  type="text"
+                  placeholder="Cambia el texto"
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: "9px",
+                    border: "1px solid #bbb",
+                    fontSize: "1rem",
+                    outline: "none",
+                    boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                    width: "115px",
+                    marginBottom: "4px",
+                  }}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </Html>
+
+              {/* --- TEXTO 3D EXTRUIDO editable ABAJO --- */}
               <Center position={[0, -6, 0]}>
                 <Text3D
                   font="/fonts/helvetiker_regular_typeface.json"
@@ -150,7 +184,7 @@ const PreventionEsclerosis = ({ title, description }) => {
                   bevelOffset={0}
                   bevelSegments={4}
                 >
-                  Que sientes
+                  {customText}
                   <meshStandardMaterial attach="material" color="#ff6cec" />
                   <meshStandardMaterial attach="material-1" color="#3b0056" />
                 </Text3D>

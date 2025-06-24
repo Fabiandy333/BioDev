@@ -10,9 +10,21 @@ const TreatmentACV = ({ title, description }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Estado para el texto editable y el input
+  const [customText, setCustomText] = useState("El tratamiento\nsalva vidas.");
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => navigate("/enfermedades/acv/sintomas");
   const goToNext = () => navigate("/enfermedades/acv/autocuidado");
   const handlePauseClick = () => setIsRotating(!isRotating);
+
+  // Cambia el texto azul al presionar Enter
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -62,8 +74,29 @@ const TreatmentACV = ({ title, description }) => {
                 maxWidth={3.8}
                 lineHeight={1.2}
               >
-                {"El tratamiento\nsalva vidas."}
+                {customText}
               </Text>
+
+              {/* Input HTML 3D para cambiar el texto */}
+              <Html position={[-0.7, -1.8, 0]}>
+                <input
+                  type="text"
+                  placeholder="Cambia el texto"
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: "9px",
+                    border: "1px solid #bbb",
+                    fontSize: "1rem",
+                    outline: "none",
+                    boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                    width: "140px",
+                    marginBottom: "4px",
+                  }}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </Html>
 
               <AcvModel4
                 isRotating={isRotating}

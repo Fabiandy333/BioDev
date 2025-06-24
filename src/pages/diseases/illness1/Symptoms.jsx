@@ -11,9 +11,21 @@ const Symptoms = ({ title, description, imageLeft, imageRight }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Para el input y el texto editable
+  const [customText, setCustomText] = useState("¿Dolor?");
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => navigate("/enfermedades");
   const goToNext = () => navigate("/enfermedades/migrana/sintomas");
-  const handlePauseClick = () => setIsRotating(!isRotating);
+  const handlePauseClick = () => setIsRotating((v) => !v);
+
+  // Cuando el usuario presiona Enter en el input
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -38,7 +50,7 @@ const Symptoms = ({ title, description, imageLeft, imageRight }) => {
                 {/* Controles de órbita */}
                 <OrbitControls enableZoom={false} enablePan={false} />
 
-                {/* --- TEXTO 2D encima del modelo --- */}
+                {/* --- TEXTO 2D encima del modelo (editado con input) --- */}
                 <Text
                   position={[2, 0.5, 0]}
                   fontSize={0.5}
@@ -47,8 +59,29 @@ const Symptoms = ({ title, description, imageLeft, imageRight }) => {
                   anchorY="middle"
                   font="/fonts/Beautiful_Valentine.otf"
                 >
-                  ¿Dolor?
+                  {customText}
                 </Text>
+
+                {/* --- INPUT HTML 3D PARA CAMBIAR EL TEXTO --- */}
+                <Html position={[-0.7, -2.4, 0]}>
+                  <input
+                    type="text"
+                    placeholder="Cambia el texto"
+                    style={{
+                      padding: "6px 12px",
+                      borderRadius: "9px",
+                      border: "1px solid #bbb",
+                      fontSize: "1rem",
+                      outline: "none",
+                      boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                      width: "115px",
+                      marginBottom: "4px",
+                    }}
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleInputKeyDown}
+                  />
+                </Html>
 
                 {/* Modelo 3D */}
                 <MigraineModel

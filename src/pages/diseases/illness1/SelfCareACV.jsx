@@ -11,11 +11,23 @@ const SelfCareACV = ({ title, description, imageLeft, imageRight }) => {
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
 
+  // Estado para el texto extruido y el input
+  const [customText, setCustomText] = useState("Autocuidado");
+  const [inputValue, setInputValue] = useState("");
+
   const handleBackClick = () => {
     navigate("/enfermedades/acv/tratamiento");
   };
 
   const handlePauseClick = () => setIsRotating((v) => !v);
+
+  // Cambia el texto extruido al presionar Enter
+  const handleInputKeyDown = (e) => {
+    if (e.key === "Enter" && inputValue.trim()) {
+      setCustomText(inputValue);
+      setInputValue("");
+    }
+  };
 
   return (
     <div className="symptoms-container">
@@ -39,7 +51,7 @@ const SelfCareACV = ({ title, description, imageLeft, imageRight }) => {
             <Canvas camera={{ position: [0, 0, 6], fov: 50 }} shadows>
               <OrbitControls enableZoom={false} enablePan={false} />
 
-              {/* Texto 3D extruido al fondo */}
+              {/* Texto 3D extruido editable */}
               <Center position={[0, -2.7, 0]}>
                 <Text3D
                   font="/fonts/helvetiker_regular_typeface.json"
@@ -52,11 +64,32 @@ const SelfCareACV = ({ title, description, imageLeft, imageRight }) => {
                   bevelOffset={0}
                   bevelSegments={4}
                 >
-                  Autocuidado
+                  {customText}
                   <meshStandardMaterial attach="material" color="#ff6cec" />
                   <meshStandardMaterial attach="material-1" color="#3b0056" />
                 </Text3D>
               </Center>
+
+              {/* Input HTML 3D para cambiar el texto */}
+              <Html position={[-1, -2.2, 0]}>
+                <input
+                  type="text"
+                  placeholder="Cambia el texto"
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: "9px",
+                    border: "1px solid #bbb",
+                    fontSize: "1rem",
+                    outline: "none",
+                    boxShadow: "0 2px 6px rgba(80,80,80,0.12)",
+                    width: "140px",
+                    marginBottom: "4px",
+                  }}
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleInputKeyDown}
+                />
+              </Html>
 
               {/* Modelo 3D */}
               <AcvModel5
