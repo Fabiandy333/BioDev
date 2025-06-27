@@ -1,18 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
 import { Canvas } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Text,
-  Html,
-  Text3D,
-  Center,
-  Cloud,
-} from "@react-three/drei";
+import { OrbitControls, Text, Html, Text3D, Center } from "@react-three/drei";
 import { useState } from "react";
 import EsclerosisModel5 from "../../diseases/models-3d/EsclerosisModel5";
 
-const SelfCareEsclerosis = ({ title, description }) => {
+const SelfCareEsclerosis = ({ title, description, imageLeft, imageRight }) => {
   const navigate = useNavigate();
   const [isRotating, setIsRotating] = useState(true);
   const [showInfo, setShowInfo] = useState(false);
@@ -115,12 +108,10 @@ const SelfCareEsclerosis = ({ title, description }) => {
                     <b>Instrucciones:</b>
                     <ul style={{ margin: "0.4em 0 0 1.2em", padding: 0 }}>
                       <li>
-                        <b>Haz clic</b> en el modelo para pausar o reanudar la
-                        rotación.
+                        <b>Haz clic</b> en el modelo para pausar o reanudar la rotación.
                       </li>
                       <li>
-                        <b>Pasa el mouse</b> sobre el modelo para resaltarlo de
-                        azul.
+                        <b>Pasa el mouse</b> sobre el modelo para resaltarlo de azul.
                       </li>
                       <li>Puedes rotar el modelo mientras esté en pausa.</li>
                       <li>Usa las flechas del teclado para rotarlo.</li>
@@ -133,8 +124,7 @@ const SelfCareEsclerosis = ({ title, description }) => {
                         esa zona. Haz doble clic de nuevo para volver.
                       </li>
                       <li>
-                        Pulsa la <b>barra espaciadora</b> para aumentar o
-                        reducir el tamaño del modelo.
+                        Pulsa la <b>barra espaciadora</b> para aumentar o reducir el tamaño del modelo.
                       </li>
                       <li>
                         <span style={{ color: "#2e54a9", fontWeight: 500 }}>
@@ -202,14 +192,6 @@ const SelfCareEsclerosis = ({ title, description }) => {
                   />
                 </Html>
               </Center>
-              <Cloud
-                position={[0, 0, -1]}
-                scale={1} // Tamaño general de la nube
-                opacity={0.009} // Qué tan transparente es
-                speed={0.1} // Movimiento sutil de la nube
-                segments={720} // Qué tan detallada es (menos = más rendimiento)
-                color="#7cc5f8"
-              />
             </Canvas>
           </div>
         </div>

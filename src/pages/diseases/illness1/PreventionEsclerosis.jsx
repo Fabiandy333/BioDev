@@ -1,14 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./Style/Symptoms.css";
 import { Canvas } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Text,
-  Text3D,
-  Html,
-  Center,
-  Sky,
-} from "@react-three/drei";
+import { OrbitControls, Text, Text3D, Html, Center } from "@react-three/drei";
 import { useState } from "react";
 import EsclerosisModel2 from "../../diseases/models-3d/EsclerosisModel2";
 
@@ -140,38 +133,16 @@ const PreventionEsclerosis = ({ title, description }) => {
                   >
                     <b>Instrucciones:</b>
                     <ul style={{ margin: "0.4em 0 0 1.2em", padding: 0 }}>
-                      <li>
-                        <b>Haz clic</b> en el modelo para pausar o reanudar la
-                        rotación.
-                      </li>
-                      <li>
-                        <b>Pasa el mouse</b> sobre el modelo para resaltarlo de
-                        azul.
-                      </li>
+                      <li><b>Haz clic</b> en el modelo para pausar o reanudar la rotación.</li>
+                      <li><b>Pasa el mouse</b> sobre el modelo para resaltarlo de azul.</li>
                       <li>Puedes rotar el modelo mientras esté en pausa.</li>
                       <li>Usa las flechas del teclado para rotarlo.</li>
-                      <li>
-                        Pulsa la tecla <b>R</b> para restablecer la posición del
-                        modelo.
-                      </li>
-                      <li>
-                        Haz <b>doble clic</b> sobre el modelo para hacer zoom en
-                        esa zona. Haz doble clic de nuevo para volver.
-                      </li>
-                      <li>
-                        Pulsa la <b>barra espaciadora</b> para aumentar o
-                        reducir el tamaño del modelo.
-                      </li>
+                      <li>Pulsa la tecla <b>R</b> para restablecer la posición del modelo.</li>
+                      <li>Haz <b>doble clic</b> sobre el modelo para hacer zoom en esa zona. Haz doble clic de nuevo para volver.</li>
+                      <li>Pulsa la <b>barra espaciadora</b> para aumentar o reducir el tamaño del modelo.</li>
                       <li>
                         <span style={{ color: "#2e54a9", fontWeight: 500 }}>
-                          Haz clic en el icono{" "}
-                          <img
-                            src="/info.png"
-                            alt="info"
-                            width={18}
-                            style={{ verticalAlign: "middle" }}
-                          />{" "}
-                          para cerrar.
+                          Haz clic en el icono <img src="/info.png" alt="info" width={18} style={{ verticalAlign: "middle" }} /> para cerrar.
                         </span>
                       </li>
                     </ul>
@@ -204,7 +175,7 @@ const PreventionEsclerosis = ({ title, description }) => {
               <Center position={[0, -6, 0]}>
                 <Text3D
                   font="/fonts/helvetiker_regular_typeface.json"
-                  size={0.4}
+                  size={0.40}
                   height={0.05}
                   curveSegments={12}
                   bevelEnabled
@@ -218,15 +189,6 @@ const PreventionEsclerosis = ({ title, description }) => {
                   <meshStandardMaterial attach="material-1" color="#3b0056" />
                 </Text3D>
               </Center>
-              <Sky
-                distance={4500}
-                sunPosition={[0, 1, 0]}
-                inclination={0.49}
-                azimuth={0.25}
-                mieCoefficient={0.05}
-                turbidity={1}
-                rayleigh={0.1}
-              />
             </Canvas>
           </div>
         </div>
