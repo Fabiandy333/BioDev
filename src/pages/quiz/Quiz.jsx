@@ -1,4 +1,3 @@
-// src/components/quiz/Quiz.jsx
 import { useState } from "react";
 import "./Quiz.css";
 import RouteQuiz from "./RouteQuiz";
@@ -8,8 +7,13 @@ const Quiz = () => {
   const [started, setStarted] = useState(false);
   const [scoreData, setScoreData] = useState(null);
 
+  const handleRestart = () => {
+    setScoreData(null);
+    setStarted(false);
+  };
+
   if (scoreData)
-    return <Podio score={scoreData.score} total={scoreData.total} />;
+    return <Podio score={scoreData.score} total={scoreData.total} onRestart={handleRestart} />;
 
   if (started)
     return (
