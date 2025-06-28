@@ -179,7 +179,7 @@
   background: #447fff;
 }
 
-/* --- PODIO --- */
+/* --- Podio general --- */
 .podio-container {
   min-height: 100vh;
   display: flex;
@@ -187,53 +187,142 @@
   justify-content: center;
   background: #f7fbff;
 }
-.podio-card, .quiz-card {
+
+.podio-card {
   background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 28px rgba(80, 130, 210, 0.13);
-  padding: 2.5rem 2.8rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(65, 100, 225, 0.10);
+  padding: 2.7rem 2.2rem 2.5rem 2.2rem;
   text-align: center;
-  max-width: 400px;
+  max-width: 410px;
   min-width: 260px;
   position: relative;
   margin: auto;
+  transition: box-shadow 0.2s;
 }
+
 .podio-trophy {
-  font-size: 2.8rem;
-  margin-bottom: 0.7em;
+  font-size: 3.1rem;
+  margin-bottom: 0.6em;
   color: #ffb600;
   animation: podio-pop 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
+
 @keyframes podio-pop {
   0% { transform: scale(0.6) rotate(-10deg); }
   60% { transform: scale(1.1) rotate(4deg);}
-  100% { transform: scale(1) rotate(0); }
+  100% { transform: scale(1) rotate(0);}
 }
+
 .podio-score {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   font-weight: 800;
-  color: #2361cc;
-  margin: 0.6em 0 0.4em 0;
+  color: #2452be;
+  margin: 0.4em 0 0.2em 0;
   letter-spacing: 0.01em;
+  background: #e8f1fd;
+  border-radius: 12px;
+  padding: 0.25em 0;
+  display: inline-block;
+  width: 100%;
 }
+
 .podio-text {
-  font-size: 1.1rem;
-  color: #234;
-  margin-bottom: 2em;
+  font-size: 1.11rem;
+  color: #254;
+  margin-bottom: 1.8em;
+  background: #e8f1fd;
+  border-radius: 8px;
+  padding: 0.4em 0.5em;
+  display: inline-block;
+  width: 100%;
 }
-.podio-btn, .quiz-start-btn {
-  padding: 0.75em 1.5em;
+
+/* --- Título del podio --- */
+.podio-top-title {
+  font-size: 1.13rem;
+  font-weight: bold;
+  margin: 1.2em 0 0.6em 0;
+  color: #2d57b6;
+  background: #d8e9fd;
+  border-radius: 8px;
+  display: inline-block;
+  padding: 0.2em 0.8em;
+}
+
+/* --- Lista de top usuarios --- */
+.podio-top-list {
+  margin-bottom: 1.4em;
+}
+
+.podio-no-users {
+  color: #5e6e8b;
+  background: #f6fafd;
+  border-radius: 6px;
+  padding: 0.7em 1.5em;
+  margin-bottom: 1em;
+}
+
+.podio-top-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 1em;
+  background: #f3f8ff;
+  border-radius: 10px;
+  padding: 0.60em 1.1em 0.60em 0.75em;
+  box-shadow: 0 1px 6px #b2cfff20;
+  transition: background 0.15s, box-shadow 0.15s;
+  font-weight: 600;
+}
+
+.podio-top-item.first {
+  background: #ffefb5;
+  box-shadow: 0 2px 18px #ffd84e30;
+}
+
+.podio-medalla {
+  width: 32px;
+  height: 32px;
+  margin-right: 0.3em;
+  filter: drop-shadow(0 2px 7px #f9df6240);
+}
+
+.podio-username {
+  flex: 1;
+  font-size: 1.04rem;
+  color: #2452be;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+
+.podio-puntaje {
+  font-size: 1.06rem;
+  color: #254;
+  font-weight: bold;
+  background: #e5f3d5;
+  border-radius: 6px;
+  padding: 0.18em 0.75em;
+  min-width: 56px;
+  text-align: center;
+}
+
+.podio-btn {
+  padding: 0.85em 1.5em;
   background: linear-gradient(90deg, #447fff 30%, #2361cc 100%);
   color: #fff;
-  font-size: 1.08rem;
+  font-size: 1.11rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: 700;
-  box-shadow: 0 2px 12px #b2cfff33;
+  box-shadow: 0 2px 14px #b2cfff35;
   transition: background 0.22s;
-  margin-top: 1.2em;
+  margin-top: 1.5em;
 }
-.podio-btn:hover, .quiz-start-btn:hover {
+.podio-btn:hover {
   background: linear-gradient(90deg, #2361cc 10%, #447fff 90%);
 }
+
