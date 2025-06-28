@@ -1,9 +1,39 @@
-import "./Quiz.css"
+// src/components/quiz/Quiz.jsx
+import { useState } from "react";
+import "./Quiz.css";
+import RouteQuiz from "./RouteQuiz";
+import Podio from "./Podio";
 
 const Quiz = () => {
-  return (
-    <div>Quiz</div>
-  )
-}
+  const [started, setStarted] = useState(false);
+  const [scoreData, setScoreData] = useState(null);
 
-export default Quiz
+  if (scoreData)
+    return <Podio score={scoreData.score} total={scoreData.total} />;
+
+  if (started)
+    return (
+      <RouteQuiz onEnd={(score, total) => setScoreData({ score, total })} />
+    );
+
+  return (
+    <div className="quiz-welcome-container">
+      <div className="quiz-welcome-card">
+        <img src="/quiz.png" alt="Quiz" className="quiz-welcome-img" />
+        <h1>¡Bienvenido al Quiz Interactivo!</h1>
+        <p>
+          Pon a prueba tus conocimientos sobre las enfermedades del cerebro.
+          <br />
+          <span style={{ color: "#2361cc", fontWeight: "500" }}>
+            Responde situaciones clínicas y toma decisiones correctas. Al finalizar, podrás ver tu posición en el podio.
+          </span>
+        </p>
+        <button className="quiz-start-btn" onClick={() => setStarted(true)}>
+          Comenzar Quiz
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Quiz;
