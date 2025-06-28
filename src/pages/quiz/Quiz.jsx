@@ -7,17 +7,27 @@ const Quiz = () => {
   const [started, setStarted] = useState(false);
   const [scoreData, setScoreData] = useState(null);
 
-  const handleRestart = () => {
-    setScoreData(null);
+  // Esta función regresa todo al inicio
+  const handleGoToStart = () => {
     setStarted(false);
+    setScoreData(null);
   };
 
   if (scoreData)
-    return <Podio score={scoreData.score} total={scoreData.total} onRestart={handleRestart} />;
+    return (
+      <Podio
+        score={scoreData.score}
+        total={scoreData.total}
+        onRestart={handleGoToStart}
+      />
+    );
 
   if (started)
     return (
-      <RouteQuiz onEnd={(score, total) => setScoreData({ score, total })} />
+      <RouteQuiz
+        onEnd={(score, total) => setScoreData({ score, total })}
+        onBack={handleGoToStart}
+      />
     );
 
   return (
