@@ -31,7 +31,7 @@ function getRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-const RouteQuiz = ({ onEnd }) => {
+const RouteQuiz = ({ onEnd, onBack }) => {
   // --- Inicialización de la ruta ---
   const [entryNodeId] = useState(randomEntryNode());
   const progressNodeIds = useMemo(
@@ -246,7 +246,7 @@ const RouteQuiz = ({ onEnd }) => {
           src="/back3.png"
           alt="Regresar"
           className="quiz-back-btn"
-          onClick={() => window.location.reload()}
+          onClick={onBack}
         />
 
         {/* Barra y texto de progreso */}
